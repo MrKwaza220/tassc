@@ -1,31 +1,35 @@
 const express = require('express');
+const auth = require('../middleware/authMiddleware');
+const Task = require('../models/Task');
+
 const router = express.Router();
-const authMiddleware = require('../middleware/authMiddleware');
-const {
-  getTasks,
-  createTask,
-  updateTask,
-  deleteTask,
-} = require('../controllers/taskController');
 
-// @route   GET api/tasks
-// @desc    Get all tasks
-// @access  Private
-router.get('/', authMiddleware, getTasks);
+// Create a new task
+router.post('/', auth, async (req, res) => {
+  try {
+    const { title, description } = req.body;
 
-// @route   POST api/tasks
-// @desc    Create a task
-// @access  Private
-router.post('/', authMiddleware, createTask);
+    const task = new Task({
+      user: req.user,
+      title,
+      description
+    });
 
-// @route   PUT api/tasks/:id
-// @desc    Update a task
-// @access  Private
-router.put('/:id', authMiddleware, updateTask);
+    await task.save();
+    res.status(201).json(task);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
 
-// @route   DELETE api/tasks/:id
-// @desc    Delete a task
-// @access  Private
-router.delete('/:id', authMiddleware, deleteTask);
+// Get all tasks
+router.get('/', auth, async (req, res) => {
+  try {
+    const tasks = await Task.find({ user: req.user });
+    res.json(tasks);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;
