@@ -1,57 +1,61 @@
 const express = require('express');
-const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+const User = require('../models/User');
 const router = express.Router();
-const JWT_SECRET = '9GqP94jyht8nXTC4Ep3Svj34NKi3QBQG'
-// Register
-router.post('/register', async (req, res) => {
+
+// Signup Route
+router.post('/signup', async (req, res) => {
+  const { username, email, password } = req.body;
+
   try {
-    const { username, email, password } = req.body;
+    // Check if user already exists
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ msg: 'User already exists' });
+    }
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).send('User already exists');
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = new User({ username, email, password: hashedPassword });
+    // Create new user
+    user = new User({ username, email, password });
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
     await user.save();
 
-    console.log('User registered successfully');  // Success message in terminal
+    // Create and send token
+    const payload = { userId: user._id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.status(201).send('User registered');
+    res.json({ token });
   } catch (err) {
-    console.error('Registration error:', err);
+    console.error(err.message);
     res.status(500).send('Server error');
   }
 });
 
-// Login
+// Login Route
 router.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    console.log('Attempting login with email:', email);
+  const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+  try {
+    // Check if user exists
+    let user = await User.findOne({ email });
     if (!user) {
-      console.log('User not found');
-      return res.status(400).send('Invalid credentials');
+      return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
+    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      console.log('Password mismatch');
-      return res.status(400).send('Invalid credentials');
+      return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
-
-    console.log('User logged in successfully');  // Success message in terminal
+    // Create and send token
+    const payload = { userId: user._id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.json({ token });
   } catch (err) {
-    console.error('Login error:', err);
+    console.error(err.message);
     res.status(500).send('Server error');
   }
 });

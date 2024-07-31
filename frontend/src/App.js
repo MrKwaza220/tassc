@@ -1,24 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar';
-import Home from './pages/Home';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Tasks from './pages/Tasks';
-import './App.css';
+import Home from './pages/Home';
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/tasks" element={<Tasks />} />
-      </Routes>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/tasks" element={<TaskList />} />
+          <Route path="/add-task" element={<TaskForm />} />
+        </Routes>
+      </div>
     </Router>
   );
-}
+};
 
 export default App;

@@ -1,54 +1,76 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-const TaskForm = ({ onSubmit, task }) => {
-  const [formData, setFormData] = useState({
-    title: task ? task.title : '',
-    description: task ? task.description : '',
-    status: task ? task.status : 'pending',
-  });
+const TaskForm = ({ onClose }) => {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [status, setStatus] = useState('Pending');
+  const [dueDate, setDueDate] = useState('');
+  const [error, setError] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    setError('');
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/tasks', {
+        name,
+        description,
+        status,
+        dueDate,
+      });
+      console.log('Task added:', response.data);
+      onClose(); // Close the form after successful submission
+    } catch (err) {
+      setError('Error adding task: ' + (err.response?.data?.msg || err.message));
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Description:</label>
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Status:</label>
-        <select name="status" value={formData.status} onChange={handleChange}>
-          <option value="pending">Pending</option>
-          <option value="completed">Completed</option>
-        </select>
-      </div>
-      <button type="submit">Save</button>
-    </form>
+    <div className="task-form">
+      <h3>Add Task</h3>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Task Name:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Status:</label>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="Pending">Pending</option>
+            <option value="Progress">Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+        <div>
+          <label>Due Date:</label>
+          <input
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+          />
+        </div>
+        <button type="submit">Add Task</button>
+        <button type="button" onClick={onClose}>Cancel</button>
+      </form>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+    </div>
   );
 };
 

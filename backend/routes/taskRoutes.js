@@ -1,34 +1,37 @@
 const express = require('express');
-const auth = require('../middleware/authMiddleware');
 const Task = require('../models/Task');
-
 const router = express.Router();
 
 // Create a new task
-router.post('/', auth, async (req, res) => {
-  try {
-    const { title, description } = req.body;
+router.post('/', async (req, res) => {
+  const { name, description, status, dueDate } = req.body;
 
-    const task = new Task({
-      user: req.user,
-      title,
-      description
+  try {
+    const newTask = new Task({
+      name,
+      description,
+      status,
+      dueDate,
+      createdDate: new Date(),
+      updatedDate: new Date(),
     });
 
-    await task.save();
-    res.status(201).json(task);
+    await newTask.save();
+    res.status(201).json(newTask);
   } catch (err) {
-    res.status(500).send('Server error');
+    console.error('Error adding task:', err);
+    res.status(500).json({ msg: 'Error adding task' });
   }
 });
 
-// Get all tasks
-router.get('/', auth, async (req, res) => {
+// Fetch tasks
+router.get('/', async (req, res) => {
   try {
-    const tasks = await Task.find({ user: req.user });
+    const tasks = await Task.find();
     res.json(tasks);
   } catch (err) {
-    res.status(500).send('Server error');
+    console.error('Error fetching tasks:', err);
+    res.status(500).json({ msg: 'Error fetching tasks' });
   }
 });
 
