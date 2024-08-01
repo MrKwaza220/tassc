@@ -1,34 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './TaskList';
 
-const TaskForm = ({ onClose }) => {
+const TaskForm = ({ onClose, task }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('Pending');
   const [dueDate, setDueDate] = useState('');
-  const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (task) {
+      setName(task.name);
+      setDescription(task.description);
+      setStatus(task.status);
+      setDueDate(new Date(task.dueDate).toISOString().split('T')[0]);
+    }
+  }, [task]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-
     try {
-      const response = await axios.post('http://localhost:5000/api/tasks', {
-        name,
-        description,
-        status,
-        dueDate,
-      });
-      console.log('Task added:', response.data);
-      onClose(); // Close the form after successful submission
+      const token = localStorage.getItem('token');
+      const payload = { name, description, status, dueDate };
+      if (task) {
+        await axios.put(`http://localhost:5000/api/tasks/${task._id}`, payload, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      } else {
+        await axios.post('http://localhost:5000/api/tasks', payload, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
+      onClose();
     } catch (err) {
-      setError('Error adding task: ' + (err.response?.data?.msg || err.message));
+      console.error('Error saving task:', err);
     }
   };
 
   return (
-    <div className="task-form">
-      <h3>Add Task</h3>
+    <div className="task-form-container">
+      <h2>{task ? 'Edit Task' : 'Add Task'}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Task Name:</label>
@@ -49,10 +64,7 @@ const TaskForm = ({ onClose }) => {
         </div>
         <div>
           <label>Status:</label>
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="Pending">Pending</option>
             <option value="Progress">Progress</option>
             <option value="Completed">Completed</option>
@@ -64,12 +76,12 @@ const TaskForm = ({ onClose }) => {
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
+            required
           />
         </div>
-        <button type="submit">Add Task</button>
+        <button type="submit">{task ? 'Update Task' : 'Add Task'}</button>
         <button type="button" onClick={onClose}>Cancel</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './AuthStyles.css'; // Import the CSS file
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -28,7 +29,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="auth-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -60,7 +61,7 @@ const Signup = () => {
         </div>
         <button type="submit">Sign Up</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p>{error}</p>}
     </div>
   );
 };

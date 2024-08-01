@@ -5,6 +5,7 @@ import TaskList from './components/TaskList';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import { ToastContainer, toast } from 'react-toastify';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/add-task" element={<TaskForm />} />
         </Routes>
+        <ToastContainer />
       </div>
     </Router>
   );
