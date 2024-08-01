@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+#Tassc Task Management Application
+##Overview
+Tassc is a task management application designed to help users organize and track their tasks effectively. The application will include front-end and back-end development, database design, and integration of these components to ensure a seamless user experience.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Project Responsibilities
+###1. Front-End Development
+Technology Stack: ReactJS (with NextJS for server-side rendering, if desired)
 
-## Available Scripts
+##User Interface Design:
 
-In the project directory, you can run:
+Design a clean, user-friendly interface for managing tasks.
+Implement features such as task creation, viewing, editing, and deletion.
+Provide a dashboard view to show tasks in various states (e.g., to-do, in-progress, completed).
+Components:
 
-### `npm start`
+##Task List Component: Display a list of tasks with options to filter and sort.
+Task Detail Component: Show details of a selected task, including edit and delete options.
+User Authentication Components: Implement login, registration, and user profile management.
+Responsive Design:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ensure the application is fully responsive and works well on different devices and screen sizes.
+##2. Back-End Development
+Technology Stack: NodeJS and ExpressJS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##API Development:
+User Authentication: Implement JWT-based authentication and authorization.
+Task Management: Develop RESTful endpoints for creating, reading, updating, and deleting tasks.
+Routes and Controllers:
+Define routes for user operations (register, login, profile management).
+Define routes for task operations (CRUD operations for tasks).
+Middleware:
+Implement middleware for authentication, error handling, and validation.
+##3. Database Design
+Technology Stack: MongoDB
 
-### `npm test`
+##Schema Design:
+User Schema: Define a schema to store user profiles, including authentication details and user preferences.
+Task Schema: Design a schema to store task details, including title, description, status, and timestamps.
+Relationships:
+Establish relationships between users and tasks to ensure tasks are associated with the correct users.
+##4. Integration
+Front-End and Back-End Integration:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Ensure that the front-end components communicate effectively with the back-end APIs.
+Implement error handling and user feedback for API interactions.
+Authentication Integration:
 
-### `npm run build`
+Integrate authentication flows between the front-end and back-end, including token management and user sessions.
+##5. Best Practices
+Security:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Implement HTTPS to secure communication.
+Use environment variables for sensitive information (e.g., JWT secret keys).
+Sanitize and validate user input to prevent injection attacks.
+Performance:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Optimize API responses and front-end performance.
+Implement caching strategies if needed.
+User Experience:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ensure the application is intuitive and easy to use.
+Provide clear feedback and error messages to users.
+Code Quality:
 
-### `npm run eject`
+Follow coding standards and best practices.
+Write unit and integration tests to ensure application reliability.
+Deliverables
+Front-End Application:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Source code and assets for the user interface.
+Documentation for setting up and running the front end.
+##Back-End Application:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Source code and configuration for the server and APIs.
+Documentation for API endpoints and how to run the server.
+Database Schema:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Schema definitions and sample data.
+Instructions for setting up the MongoDB database.
+##Integration and Deployment:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Instructions for deploying the application.
+Any necessary configuration files and environment variables.
+Testing:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Test cases and results for both front-end and back-end components.
+Documentation for running tests and any known issues.
