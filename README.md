@@ -1,15 +1,3 @@
-
-
-## Available Scripts
-In the project directory, you can run:
-### after opening tassc folder, cd frontend on the terminal  `npm start` 
-### open second terminal run `cd backend  `then ` node server.js`
-
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-backend runs on the port 5000
-
 #Tassc Task Management Application
 ##Overview
 Tassc is a task management application designed to help users organize and track their tasks effectively. The application will include front-end and back-end development, database design, and integration of these components to ensure a seamless user experience.
