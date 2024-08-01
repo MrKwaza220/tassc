@@ -8,7 +8,9 @@ const authMiddleware = (req, res, next) => {
   }
 
   try {
+    console.log('Token received:', token);
     const decoded = jwt.verify(token, config.get('jwtSecret'));
+    console.log('Decoded token:', decoded);
     req.user = decoded.user;
     next();
   } catch (err) {
@@ -16,5 +18,6 @@ const authMiddleware = (req, res, next) => {
     res.status(401).json({ msg: 'Token is not valid' });
   }
 };
+
 
 module.exports = authMiddleware;

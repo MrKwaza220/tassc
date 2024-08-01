@@ -1,0 +1,5 @@
+{
+    "jwtSecret": "9GqP94jyht8nXTC4Ep3Svj34NKi3QBQG",
+    "mongoURI": "mongodb://localhost:27017"
+  }
+  
