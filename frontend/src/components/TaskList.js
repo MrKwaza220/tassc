@@ -73,7 +73,7 @@ const TaskList = () => {
   return (
     <div className="task-container">
       <h2>Tasks</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
       <button onClick={handleAddTaskClick}>Add Task</button>
       {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} />}
       {viewDetails && (
