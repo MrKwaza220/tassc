@@ -9,18 +9,23 @@ const TaskList = () => {
   const [showForm, setShowForm] = useState(false);
   const [currentTask, setCurrentTask] = useState(null);
   const [viewDetails, setViewDetails] = useState(null);
+  const [error, setError] = useState('');
 
   const fetchTasks = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      setError('No token found, please login again.');
+      return;
+    }
+
     try {
-      const token = localStorage.getItem('token');
       const response = await axios.get('http://localhost:5000/api/tasks', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        headers: { 'x-auth-token': token },
       });
       setTasks(response.data);
     } catch (err) {
-      console.error('Error fetching tasks:', err);
+      console.error('Error fetching tasks:', err.response || err.message);
+      setError('Failed to load tasks. ' + (err.response?.data?.msg || err.message));
     }
   };
 
@@ -51,9 +56,7 @@ const TaskList = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+        headers: { 'x-auth-token': token },
       });
       fetchTasks();
       toast.success('Task deleted successfully');
@@ -70,6 +73,7 @@ const TaskList = () => {
   return (
     <div className="task-container">
       <h2>Tasks</h2>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={handleAddTaskClick}>Add Task</button>
       {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} />}
       {viewDetails && (

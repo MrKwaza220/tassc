@@ -24,7 +24,7 @@ const Signup = () => {
         setError('Sign-up failed');
       }
     } catch (err) {
-      setError('Server error: ' + (err.response?.data?.msg || err.message));
+      setError('' + (err.response?.data?.msg || err.message));
     }
   };
 

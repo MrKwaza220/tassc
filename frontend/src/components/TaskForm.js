@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './TaskList';
+import './TaskList.css';
 
 const TaskForm = ({ onClose, task }) => {
   const [name, setName] = useState('');
@@ -19,21 +19,29 @@ const TaskForm = ({ onClose, task }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    const taskData = { name, description, status, dueDate };
+    console.log('Submitting task data:', taskData);
+
     try {
-      const token = localStorage.getItem('token');
-      const payload = { name, description, status, dueDate };
       if (task) {
-        await axios.put(`http://localhost:5000/api/tasks/${task._id}`, payload, {
+        // Update task
+        console.log('Updating task:', task._id);
+        const response = await axios.put(`http://localhost:5000/api/tasks/${task._id}`, taskData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
+        console.log('Task updated successfully:', response.data);
       } else {
-        await axios.post('http://localhost:5000/api/tasks', payload, {
+        // Create task
+        console.log('Creating new task');
+        const response = await axios.post('http://localhost:5000/api/tasks', taskData, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
+        console.log('Task created successfully:', response.data);
       }
       onClose();
     } catch (err) {
@@ -42,7 +50,7 @@ const TaskForm = ({ onClose, task }) => {
   };
 
   return (
-    <div className="task-form-container">
+    <div className="task-form">
       <h2>{task ? 'Edit Task' : 'Add Task'}</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -56,7 +64,8 @@ const TaskForm = ({ onClose, task }) => {
         </div>
         <div>
           <label>Description:</label>
-          <textarea
+          <input
+            type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
@@ -64,9 +73,13 @@ const TaskForm = ({ onClose, task }) => {
         </div>
         <div>
           <label>Status:</label>
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            required
+          >
             <option value="Pending">Pending</option>
-            <option value="Progress">Progress</option>
+            <option value="In Progress">In Progress</option>
             <option value="Completed">Completed</option>
           </select>
         </div>

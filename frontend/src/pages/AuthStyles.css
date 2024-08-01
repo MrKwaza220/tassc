@@ -1,5 +1,18 @@
 /* AuthStyles.css */
 
+/*HOME*/
+.home-page{
+  background: white;
+  height: 100vh;
+  width: 100%;
+}
+.home-container h1{
+  font-size: 70px;
+  color: #007bff;
+}
+.home-container p{
+  font-size: 30px;
+}
 .auth-container {
     max-width: 400px;
     margin: 0 auto;

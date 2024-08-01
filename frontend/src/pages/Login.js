@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './AuthStyles.css'; // Import the CSS file
+import './AuthStyles.css'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +26,6 @@ const Login = () => {
       setError('Server error: ' + (err.response?.data?.msg || err.message));
     }
   };
-
   return (
     <div className="auth-container">
       <h2>Login</h2>
