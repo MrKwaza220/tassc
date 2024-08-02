@@ -13,6 +13,9 @@ const TaskList = () => {
 
   const fetchTasks = async () => {
     const token = localStorage.getItem('token');
+    
+    console.log('Retrieved token:', token); // Debug: Check if the token is retrieved correctly
+
     if (!token) {
       setError('No token found, please login again.');
       return;
@@ -20,12 +23,12 @@ const TaskList = () => {
 
     try {
       const response = await axios.get('http://localhost:5000/api/tasks', {
-        headers: { 'x-auth-token': token },
+        headers: { 'Authorization': `Bearer ${token}` },
       });
       setTasks(response.data);
     } catch (err) {
-      console.error('Error fetching tasks:', err.response || err.message);
-      setError('Failed to load tasks. ' + (err.response?.data?.msg || err.message));
+      //console.error('Error fetching tasks:', err.response || err.message);
+      setError('Failed to load tasks.');
     }
   };
 
@@ -73,7 +76,7 @@ const TaskList = () => {
   return (
     <div className="task-container">
       <h2>Tasks</h2>
-      {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={handleAddTaskClick}>Add Task</button>
       {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} />}
       {viewDetails && (
@@ -99,7 +102,7 @@ const TaskList = () => {
           </tr>
         </thead>
         <tbody>
-          {tasks.map(task => (
+          {tasks.map((task) => (
             <tr key={task._id}>
               <td>{task.name}</td>
               <td>{task.description}</td>

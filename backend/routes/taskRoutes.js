@@ -4,7 +4,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 const Task = require('../models/Task');
 
 // Get all tasks for authenticated user
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/api/tasks', authMiddleware, async (req, res) => {
   try {
     if (!req.user || !req.user.id) {
       console.error('User or user id is not defined in request object');

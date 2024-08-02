@@ -20,6 +20,8 @@ const TaskForm = ({ onClose, task }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
+    console.log('Retrieved token:', token);
+
     const taskData = { name, description, status, dueDate };
     console.log('Submitting task data:', taskData);
 
@@ -45,7 +47,7 @@ const TaskForm = ({ onClose, task }) => {
       }
       onClose();
     } catch (err) {
-      console.error('Error saving task:', err);
+      //console.error('Error saving task:', err);
     }
   };
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './AuthStyles.css'; // Import the CSS file
+import './AuthStyles.css';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -16,7 +16,7 @@ const Signup = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signup', { username, email, password });
       if (response.data.token) {
-        // Save the token in local storage or state
+        // Save the token in local storage
         localStorage.setItem('token', response.data.token);
         // Redirect to the login page
         navigate('/login');
@@ -24,12 +24,12 @@ const Signup = () => {
         setError('Sign-up failed');
       }
     } catch (err) {
-      setError('' + (err.response?.data?.msg || err.message));
+      setError('Server error: ' + (err.response?.data?.msg || err.message));
     }
   };
 
   return (
-    <div className="auth-container">
+    <div>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -61,7 +61,7 @@ const Signup = () => {
         </div>
         <button type="submit">Sign Up</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };
