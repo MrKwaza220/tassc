@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./TaskList.css";
+import "./TaskForm.css";
 
 
 const TaskForm = ({ onClose, task }) => {
@@ -105,7 +105,7 @@ const TaskForm = ({ onClose, task }) => {
           />
         </div>
         <button type="submit">{task ? "Update Task" : "Add Task"}</button>
-        <button type="button" onClick={onClose}>
+        <button type="button" className="cancel-button" onClick={onClose}>
           Cancel
         </button>
       </form>

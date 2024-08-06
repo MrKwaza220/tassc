@@ -1,0 +1,70 @@
+/* TaskList.css */
+
+.task-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  .task-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .task-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .task-form form div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .task-form label {
+    margin-bottom: 5px;
+    color: #555;
+    font-size: 14px;
+  }
+  
+  .task-form input[type="text"],
+  .task-form input[type="date"],
+  .task-form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .task-form button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+  }
+  
+  .task-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .task-form .cancel-button {
+    background-color: #6c757d;
+  }
+  
+  .task-form .cancel-button:hover {
+    background-color: #5a6268;
+  }
+  

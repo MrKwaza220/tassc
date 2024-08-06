@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import "./AuthStyles.css";
+import "./Signup.css";
 
-const Login = () => {
+const Signup = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,14 +14,14 @@ const Login = () => {
     e.preventDefault();
     setError(''); // Clear any previous error
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await axios.post('http://localhost:5000/api/auth/signup', { username, email, password });
       if (response.data.token) {
         // Save the token in local storage
         localStorage.setItem('token', response.data.token);
-        // Redirect to the tasks page
-        navigate('/tasks');
+        // Redirect to the login page
+        navigate('/login');
       } else {
-        setError('Login failed');
+        setError('Sign-up failed');
       }
     } catch (err) {
       setError('Server error: ' + (err.response?.data?.msg || err.message));
@@ -28,9 +29,18 @@ const Login = () => {
   };
 
   return (
-    <div className="loginpage">  
-      <h2>Login</h2>
+    <div className="signup-page">
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
         <div>
           <label>Email:</label>
           <input
@@ -49,11 +59,11 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };
 
-export default Login;
+export default Signup;

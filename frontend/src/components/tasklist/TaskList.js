@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import TaskForm from './TaskForm';
-import './TaskList.css';
-import { toast } from 'react-toastify';
+import TaskForm from '../taskform/TaskForm';
+import "./TaskList.css";
+
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -20,25 +20,26 @@ const TaskList = () => {
         }
       };
       const res = await axios.get('http://localhost:5000/api/tasks', config);
+      setTasks(res.data); // Update the state with fetched tasks
       console.log(res.data);
     } catch (err) {
       console.error('Error fetching tasks:', err);
+      setError('Failed to fetch tasks.');
     }
   };
-   
 
   const addTask = async (taskData) => {
     const token = localStorage.getItem('token');
     console.log('Adding task with token:', token);
-    
+
     if (!token) {
       setError('No token found, please login again.');
       return;
     }
-  
+
     try {
       await axios.post('http://localhost:5000/api/tasks', taskData, {
-        headers: { 'x-auth-token': token },
+        headers: { 'Authorization': `Bearer ${token}` },
       });
       fetchTasks(); // Refresh tasks list after adding a new task
     } catch (err) {
@@ -77,10 +78,9 @@ const TaskList = () => {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       fetchTasks();
-      toast.success('Task deleted successfully');
+      console.success('Task deleted successfully');
     } catch (err) {
       console.error('Error deleting task:', err);
-      toast.error('Error deleting task');
     }
   };
 
@@ -93,7 +93,7 @@ const TaskList = () => {
       <h2>Tasks</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button onClick={handleAddTaskClick}>Add Task</button>
-      {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} />}
+      {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} onSave={addTask} />}
       {viewDetails && (
         <div className="task-details">
           <h3>Task Details</h3>
