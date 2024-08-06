@@ -1,9 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const {check, validationResult} = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
 const router = express.Router();
+const config = require('config');
+
+const jwtSecret = process.env.JWT_SECRET || config.get('jwtSecret');
 
 // Signup Route
 router.post(
@@ -47,7 +50,7 @@ router.post(
 
       jwt.sign(
         payload,
-        process.env.jwtSecret,
+        jwtSecret,
         { expiresIn: '1h' },
         (err, token) => {
           if (err) throw err;
@@ -61,27 +64,23 @@ router.post(
   }
 );
 
-
 // Login Route
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if user exists
     let user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
-    // Check password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
-    // Create and send token
-    const payload = { userId: user._id };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const payload = { user: { id: user.id } };
+    const token = jwt.sign(payload, jwtSecret, { expiresIn: '1h' });
 
     res.json({ token });
   } catch (err) {

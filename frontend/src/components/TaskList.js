@@ -12,23 +12,38 @@ const TaskList = () => {
   const [error, setError] = useState('');
 
   const fetchTasks = async () => {
-    const token = localStorage.getItem('token');
-    
-    console.log('Retrieved token:', token); // Debug: Check if the token is retrieved correctly
+    try {
+      const token = localStorage.getItem('token'); // Or however you are storing the token
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      };
+      const res = await axios.get('http://localhost:5000/api/tasks', config);
+      console.log(res.data);
+    } catch (err) {
+      console.error('Error fetching tasks:', err);
+    }
+  };
+   
 
+  const addTask = async (taskData) => {
+    const token = localStorage.getItem('token');
+    console.log('Adding task with token:', token);
+    
     if (!token) {
       setError('No token found, please login again.');
       return;
     }
-
+  
     try {
-      const response = await axios.get('http://localhost:5000/api/tasks', {
-        headers: { 'Authorization': `Bearer ${token}` },
+      await axios.post('http://localhost:5000/api/tasks', taskData, {
+        headers: { 'x-auth-token': token },
       });
-      setTasks(response.data);
+      fetchTasks(); // Refresh tasks list after adding a new task
     } catch (err) {
-      //console.error('Error fetching tasks:', err.response || err.message);
-      setError('Failed to load tasks.');
+      console.error('Error adding task:', err.response || err.message);
+      setError('Failed to add task.');
     }
   };
 
@@ -59,7 +74,7 @@ const TaskList = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
-        headers: { 'x-auth-token': token },
+        headers: { 'Authorization': `Bearer ${token}` },
       });
       fetchTasks();
       toast.success('Task deleted successfully');
@@ -91,32 +106,36 @@ const TaskList = () => {
           <button onClick={closeDetails}>Close</button>
         </div>
       )}
-      <table className="task-table">
-        <thead>
-          <tr>
-            <th>Task Name</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Due Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map((task) => (
-            <tr key={task._id}>
-              <td>{task.name}</td>
-              <td>{task.description}</td>
-              <td>{task.status}</td>
-              <td>{new Date(task.dueDate).toLocaleDateString()}</td>
-              <td className="actions">
-                <button className="edit" onClick={() => handleEditClick(task)}>Edit</button>
-                <button className="view" onClick={() => handleViewDetailsClick(task)}>View Details</button>
-                <button className="delete" onClick={() => handleDeleteClick(task._id)}>Delete</button>
-              </td>
+      {tasks.length === 0 ? (
+        <p>No tasks loaded</p>
+      ) : (
+        <table className="task-table">
+          <thead>
+            <tr>
+              <th>Task Name</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Due Date</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {tasks.map((task) => (
+              <tr key={task._id}>
+                <td>{task.name}</td>
+                <td>{task.description}</td>
+                <td>{task.status}</td>
+                <td>{new Date(task.dueDate).toLocaleDateString()}</td>
+                <td className="actions">
+                  <button className="edit" onClick={() => handleEditClick(task)}>Edit</button>
+                  <button className="view" onClick={() => handleViewDetailsClick(task)}>View Details</button>
+                  <button className="delete" onClick={() => handleDeleteClick(task._id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
