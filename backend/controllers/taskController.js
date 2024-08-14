@@ -57,6 +57,9 @@ exports.updateTask = async (req, res) => {
 
 exports.deleteTask = async (req, res) => {
   try {
+    console.log('User ID:', req.user.id);
+    console.log('Task ID:', req.params.id);
+
     let task = await Task.findById(req.params.id);
     if (!task) {
       return res.status(404).json({ msg: 'Task not found' });
@@ -69,7 +72,9 @@ exports.deleteTask = async (req, res) => {
     await Task.findByIdAndRemove(req.params.id);
     res.json({ msg: 'Task removed' });
   } catch (err) {
-    console.error(err.message);
+    console.error('Error in deleteTask:', err.message);
     res.status(500).send('Server error');
   }
 };
+
+

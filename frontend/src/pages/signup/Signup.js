@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 import axios from 'axios';
 import "./Signup.css";
 
-const Signup = () => {
+const Signup = ({ onClose }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(''); // Clear any previous error
+  
     try {
       const response = await axios.post('http://localhost:5000/api/auth/signup', { username, email, password });
       if (response.data.token) {
         // Save the token in local storage
         localStorage.setItem('token', response.data.token);
-        // Redirect to the login page
-        navigate('/login');
+        // Set success message
+        alert('Signup successful!');
+        // Redirect to the login page after a short delay
+        // setTimeout(() => navigate('/home'), 2000); // Redirect after 2 seconds
       } else {
         setError('Sign-up failed');
       }
@@ -29,8 +31,9 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-page">
+    <div className="signup-form">
       <h2>Sign Up</h2>
+      <p>Already have account? Click Close</p>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>
@@ -62,6 +65,7 @@ const Signup = () => {
         <button type="submit">Sign Up</button>
       </form>
       {error && <p style={{ color: 'red' }}>{error}</p>}
+      <button onClick={onClose}>Close</button>
     </div>
   );
 };

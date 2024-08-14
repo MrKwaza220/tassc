@@ -78,11 +78,12 @@ const TaskList = () => {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       fetchTasks();
-      console.success('Task deleted successfully');
+      console.log('Task deleted successfully');
     } catch (err) {
-      console.error('Error deleting task:', err);
+      console.error('Error deleting task:', err.response || err.message);
     }
   };
+  
 
   const closeDetails = () => {
     setViewDetails(null);
