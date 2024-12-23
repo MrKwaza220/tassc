@@ -1,9 +1,13 @@
+/* #252526 */
+/* #1E1E1E */
+
 .navbar {
-    background-color: #d0cfcf;
+    background-color: #e9e7e7;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid #ddd;
   }
   
   .nav-links {
@@ -37,7 +41,7 @@
   .nav-links a {
     color: #333;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
     padding: 5px 10px;
   }
   
@@ -50,7 +54,7 @@
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
   }
