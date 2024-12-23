@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #333;
+    background-color: #d0cfcf;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -26,7 +26,7 @@
   }
   
   .navbar-logo img {
-    height: 50px;
+    height: 60px;
     cursor: pointer;
   }
   .nav-links li {
@@ -35,7 +35,7 @@
   }
   
   .nav-links a {
-    color: white;
+    color: #333;
     text-decoration: none;
     font-size: 18px;
     padding: 5px 10px;
