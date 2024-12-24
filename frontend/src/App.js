@@ -21,6 +21,7 @@ const App = () => {
           <Route path="/add-task" element={<TaskForm />} />
         </Routes>
         <About />
+        <TaskList />
       </div>
     </Router>
   );
