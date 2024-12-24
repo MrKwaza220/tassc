@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="home-page">
       <div className="home-container">
-        <h1>Welcome to Daily To-do.</h1>
+        <h1>WELCOME TO DAILY TO-DO.</h1>
         <h2>Simplify Your Life, One Task at a Time.</h2>
         <p>
         Daily Todo is your personal productivity companion, 
