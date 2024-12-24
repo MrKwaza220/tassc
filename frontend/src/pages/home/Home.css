@@ -1,6 +1,7 @@
 /* Home.css */
 .home-page {
-    background-color: #e9e7e7;
+    /* background-color: #e9e7e7; */
+    background-color: #101010;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
