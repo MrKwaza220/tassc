@@ -6,7 +6,7 @@ const SideNavHome = () => {
         <div className="side-nav-home">
             <h2>Home</h2>
             <div>
-                Welcome to home page!
+                Welcome to home page!!
             </div>
         </div>
     );
