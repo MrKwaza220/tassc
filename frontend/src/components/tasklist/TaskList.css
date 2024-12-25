@@ -1,13 +1,15 @@
 /* TaskList.css */
 
 /* Container for the task list */
+.task-list-page{
+  background-color: #1d1d1d;
+  min-height: 50vh;
+}
 .task-container {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Title styling */
@@ -114,4 +116,35 @@
 
 .task-details button:hover {
   opacity: 0.8;
+}
+
+.task-list-page {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 15px;
+  border-right: 1px solid #ddd;
+  height: 100vh;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar ul li:hover {
+  background-color: #ddd;
+}
+
+.task-container {
+  flex: 1;
+  padding: 20px;
 }

@@ -9,6 +9,7 @@ const About = () => {
                 <p className="about-intro">
                     Welcome to Tassc! We are passionate about simplifying your task management and enhancing productivity. 
                     With a user-centric approach, we aim to deliver tools that help individuals and teams thrive.
+                    Add image of table.... 
                 </p>
                 
                 <h2>Our Mission</h2>
