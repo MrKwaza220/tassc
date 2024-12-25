@@ -1,4 +1,6 @@
 import React from 'react';
+import TaskList from '../../components/tasklist/TaskList';
+import "./DailyTask.css";
 
 const DailyTask = () => {
     return (
@@ -9,7 +11,9 @@ const DailyTask = () => {
                 <li>Task 2</li>
                 <li>Task 3</li>
                 <li>Set Timer</li>
+
             </ul>
+            <TaskList />
         </div>
     );
 };
