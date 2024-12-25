@@ -18,14 +18,10 @@ ul {
 }
 
 li {
-    background-color: #fff;
+    background-color: #101010;
     margin: 5px 0;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #101010;
     border-radius: 4px;
     transition: background-color 0.3s;
-}
-
-li:hover {
-    background-color: #f1f1f1;
 }
