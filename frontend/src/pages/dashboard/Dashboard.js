@@ -14,11 +14,11 @@ const Dashboard = () => {
             <div className="dashboard-content">
                 <Routes>
                     <Route path="/" element={<SideNavHome />} />
-                    <Route path="sidenavhome" element={<SideNavHome />} />
-                    <Route path="inbox" element={<Inbox />} />
-                    <Route path="dailytask" element={<DailyTask />} />
-                    <Route path="sidedashboard" element={<SideDashboard />} />
-                    <Route path="workspace" element={<Workspace />} />
+                    <Route path="/SideNavHome" element={<SideNavHome />} />
+                    <Route path="/inbox" element={<Inbox />} />
+                    <Route path="/dailytask" element={<DailyTask />} />
+                    <Route path="/sidedashboard" element={<SideDashboard />} />
+                    <Route path="/workspace" element={<Workspace />} />
                 </Routes>
                 <Outlet />
             </div>
