@@ -7,6 +7,7 @@ import Home from './pages/home/Home';
 import About from './pages/about/About';
 import Footer from './components/footer/Footer';
 import Dashboard from './pages/dashboard/Dashboard';
+import SideNavBar from './sidenavcomponents/sidenavbar/SideNavBar';
 
 const App = () => {
   return (
@@ -23,7 +24,7 @@ const App = () => {
             } 
             />
           <Route path="/about" element={<About />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/sidenavbar" element={<SideNavBar />} />
           
         </Routes>
         
