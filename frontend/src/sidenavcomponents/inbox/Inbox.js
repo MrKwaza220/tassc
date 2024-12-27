@@ -31,7 +31,7 @@ const Inbox = () => {
             case 'Notification':
                 return <Notification />;
             default:
-                return <Notification />;
+                return <DirectMessage />;
         }
     }
 
@@ -61,7 +61,7 @@ const Inbox = () => {
         <div className="chat-header">
             <ul className="chat-list">
                 <li className="chat-items" onClick={() => setActiveView('DirectMessage')}>Direct Message</li>
-                <li className="chat-items" onClick={() => setActiveView('Group Chat')}>Group Chat</li>
+                <li className="chat-items" onClick={() => setActiveView('GroupChat')}>Group Chat</li>
                 <li className="chat-items" onClick={() => setActiveView('Notification')}>Notification</li>
             </ul>
             <div className="chat-content">
