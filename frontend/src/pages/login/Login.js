@@ -21,7 +21,7 @@ const Login = ({ onClose }) => {
         // Save the token in local storage
         localStorage.setItem("token", response.data.token);
         // Redirect to the tasks page
-        navigate("/tasks");
+        navigate("/dashboard");
       } else {
         setError("Login failed");
       }
