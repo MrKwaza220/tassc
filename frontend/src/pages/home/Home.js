@@ -16,7 +16,7 @@ const Home = () => {
         lifelong goals, Daily Todo makes task management effortless 
         and intuitive.
         </p>
-        <a href="/sidenavbar">
+        <a href="/dashboard">
           <button>Get Started</button>
         </a>
     </div>
