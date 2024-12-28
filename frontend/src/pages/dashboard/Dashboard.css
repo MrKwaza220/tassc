@@ -7,6 +7,12 @@
     
 }
 
+.chat-section {
+    background-color: #1d1d1d;
+    border-bottom: 1px solid #101010;
+    
+}
+
 .sidebar {
     width: 250px;
     background-color: #101010;
@@ -19,6 +25,7 @@
     font-size: 24px;
     margin-bottom: 20px;
 }
+
 
 .nav-list {
     list-style-type: none;
