@@ -3,61 +3,72 @@
 .inbox-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  font-family: Arial, sans-serif;
+  padding: 20px;
+  height: 100%;
+  background-color: #1d1d1d;
 }
 
 .chat-section {
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.chat-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.chat-items {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-items:hover {
+  background-color: #f0f0f0;
+}
+
+.chat-items.active {
+  background-color: #28a745;
+  color: white;
+  border-radius: 10px;
+  
 }
 
 .search-section {
-  border: 0px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-
-.search-section h3 {
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .search-section input {
-  width: calc(50% - 120px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
 }
 
 .search-section button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #28a745;
+  color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-left: 5px;
 }
 
 .search-section button:hover {
-  background-color: #0056b3;
-}
-
-.search-results {
-  margin-top: 10px;
-}
-
-.search-result {
-  padding: 5px;
-  width: 48%;
-  background-color: #f1f1f1;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-bottom: 5px;
+  background-color: #39c55a;
 }
 
 .chat-list {
@@ -69,9 +80,25 @@
 }
 .chat-list li {
   padding: 10px;
-  margin-left: 11px;
+  margin-left: 0px;
   border-bottom: 1px solid #ddd;
   cursor: pointer;
   background-color: #f1f1f1;
+}
+
+.chat-items {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-items:hover {
+  background-color: #f0f0f0;
+}
+
+.chat-items.active {
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
 }
 
