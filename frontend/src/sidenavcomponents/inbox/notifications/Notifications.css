@@ -1,7 +1,6 @@
 .notifications {
     padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #1d1d1d;
     border-radius: 5px;
     max-width: 400px;
     margin: 20px auto;
@@ -10,11 +9,11 @@
 
 h2 {
     font-size: 24px;
-    color: #333;
+    color: #f9f9f9;;
     margin-bottom: 10px;
 }
 
 p {
     font-size: 16px;
-    color: #666;
+    color: #f9f9f9;
 }
