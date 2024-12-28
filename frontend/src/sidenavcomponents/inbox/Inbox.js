@@ -3,6 +3,8 @@ import DirectMessage from "./directmessage/DirectMessage";
 import GroupChat from "./groupchat/GroupChat";
 import Notification from "./notifications/Notifications";
 import axios from "axios";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMessage, faComments, faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import "./Inbox.css";
 
 const Inbox = () => {
@@ -56,6 +58,7 @@ const Inbox = () => {
               }`}
               onClick={() => setActiveView("DirectMessage")}
             >
+              <FontAwesomeIcon icon={faMessage} style={{marginRight: "8", fontSize: "18px"}} />
               Direct Message
             </li>
             <li
@@ -63,7 +66,9 @@ const Inbox = () => {
                 activeView === "GroupChat" ? "active" : ""
               }`}
               onClick={() => setActiveView("GroupChat")}
+
             >
+              <FontAwesomeIcon icon={faComments} style={{marginRight: "8", fontSize: "18px"}} />
               Group Chat
             </li>
             <li
@@ -72,6 +77,7 @@ const Inbox = () => {
               }`}
               onClick={() => setActiveView("Notification")}
             >
+              <FontAwesomeIcon icon={faBell} style={{marginRight: "8", fontSize: "18px"}} />
               Notifications
             </li>
           </ul>
@@ -82,7 +88,10 @@ const Inbox = () => {
               placeholder="Search by Email"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button onClick={handleSearch}>Search</button>
+            <button onClick={handleSearch}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} style={{marginRight: "8", fontSize: "18px"}} />
+              Search
+              </button>
           </div>
         </div>
         <div className="chat-content">{renderContent()}</div>
