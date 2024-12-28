@@ -7,8 +7,9 @@
 .groupchat-sidebar {
     width: 25%;
     padding: 20px;
-    background-color: #f1f1f1;
-    border-right: 1px solid #ddd;
+    background-color: #ccc;
+    border-radius: 5px;
+    
 }
 
 .groupchat-sidebar h3 {
@@ -37,8 +38,9 @@
 }
 
 .create-group button {
+    border-radius: 5px;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #1d1d1d;
     color: white;
     border: none;
     cursor: pointer;
