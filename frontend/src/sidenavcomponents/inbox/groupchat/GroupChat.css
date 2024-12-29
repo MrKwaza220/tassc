@@ -37,19 +37,13 @@
     border-radius: 4px;
 }
 
-.create-group button {
+.groupchat-sidebar button {
     border-radius: 5px;
     padding: 10px;
     background-color: #1d1d1d;
     color: white;
     border: none;
     cursor: pointer;
-}
-
-.chat-section {
-    flex: 1;
-    padding: 20px;
-    background-color: #f9f9f9;
 }
 
 .users, .messages {
@@ -66,3 +60,81 @@
     display: flex;
     gap: 10px;
 }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  .modal-content h3 {
+    margin-bottom: 20px;
+  }
+  
+  .modal-content input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .add-mates {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .add-mates .add-button{
+    font-size: 20px;
+    color: #1d1d1d;
+    border: none;
+    height: 37px;
+    width: 50px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .mates-list {
+    margin-bottom: 20px;
+  }
+  
+  .mate {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  
+  .done-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancel-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+
