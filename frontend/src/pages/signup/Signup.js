@@ -36,30 +36,31 @@ const Signup = ({ onClose }) => {
       <form onSubmit={handleSubmit}>
         <h1>Create Account</h1>
         <div>
-          <label>Username:</label>
+  
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
+            placeholder="username"
           />
         </div>
         <div>
-          <label>Email:</label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            placeholder="email"
           />
         </div>
         <div>
-          <label>Password:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder="password"
           />
         </div>
         <button type="submit">Sign Up</button>
