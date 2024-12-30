@@ -14,7 +14,7 @@ const Login = ({ onClose }) => {
     setError(""); // Clear any previous error
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+       "http://localhost:5000/api/auth/login",
         { email, password }
       );
       if (response.data.token) {
@@ -32,8 +32,8 @@ const Login = ({ onClose }) => {
 
   return (
     <div className="login-form">
-      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
+      <h1>Signup</h1>
         <div>
           <label>Email:</label>
           <input
@@ -55,7 +55,6 @@ const Login = ({ onClose }) => {
         <button type="submit">Login</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <button onClick={onClose}>Close</button>
     </div>
   );
 };
