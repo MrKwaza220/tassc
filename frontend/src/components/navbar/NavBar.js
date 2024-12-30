@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Login from '../../pages/login/Login';
-import Signup from '../../pages/signup/Signup';
 import "./NavBar.css"; 
 
 const NavBar = () => {
@@ -39,42 +37,8 @@ const NavBar = () => {
         <li>
           <Link to="/contact">Contact</Link>
         </li>
-        {token ? (
-          <>
-            <li>
-              <Link to="/tasks">Tasks</Link>
-            </li>
-            <li>
-              <button onClick={handleLogout} className="logout-button">Logout</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <li>
-              <button onClick={openLoginModal} className="nav-button">Login</button>
-            </li>
-            <li>
-              <button onClick={openSignupModal} className="nav-button">Sign Up</button>
-            </li>
-          </>
-        )}
+      
       </ul>
-
-      {/* Modals */}
-      {isLoginModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <Login onClose={closeLoginModal} />
-          </div>
-        </div>
-      )}
-      {isSignupModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <Signup onClose={closeSignupModal} />
-          </div>
-        </div>
-      )}
       </div>
     </nav>
   );
