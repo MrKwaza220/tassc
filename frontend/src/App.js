@@ -5,6 +5,7 @@ import Home from './pages/home/Home';
 import About from './pages/about/About';
 import Footer from './components/footer/Footer';
 import Dashboard from './pages/dashboard/Dashboard';
+import AuthForm from './pages/authform/AuthForm';
 
 
 const App = () => {
@@ -18,11 +19,14 @@ const App = () => {
             <NavBar />
             <Home />
             <About />
+            <AuthForm />
             </>
             } 
             />
           <Route path="/about" element={<About />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          {/* <Route path="/authform" element={<AuthForm />} /> */}
+          
           
         </Routes>
         

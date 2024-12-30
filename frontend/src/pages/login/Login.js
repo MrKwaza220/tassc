@@ -34,7 +34,9 @@ const Login = ({ onClose }) => {
     <div className="login-form">
       <form onSubmit={handleSubmit} >
       <h1>Sign In</h1>
-        
+        <div className="signin-options">
+          
+        </div>
         <div className="login-input">
           <input
             type="email"
@@ -44,7 +46,7 @@ const Login = ({ onClose }) => {
             placeholder="email"
           />
         </div>
-        <div>
+        <div className="login-input">
         
           <input
             type="password"
