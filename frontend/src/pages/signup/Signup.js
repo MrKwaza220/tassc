@@ -7,6 +7,7 @@ const Signup = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
 
   const handleSubmit = async (e) => {
@@ -19,9 +20,8 @@ const Signup = ({ onClose }) => {
         // Save the token in local storage
         localStorage.setItem('token', response.data.token);
         // Set success message
-        alert('Signup successful!');
-        // Redirect to the login page after a short delay
-        // setTimeout(() => navigate('/home'), 2000); // Redirect after 2 seconds
+        setSuccess('Signup successful!');
+      
       } else {
         setError('Sign-up failed');
       }
@@ -32,9 +32,9 @@ const Signup = ({ onClose }) => {
 
   return (
     <div className="signup-form">
-      <h2>Sign Up</h2>
-      <p>Already have account? Click Close</p>
+      
       <form onSubmit={handleSubmit}>
+        <h1>Create Account</h1>
         <div>
           <label>Username:</label>
           <input
@@ -64,8 +64,9 @@ const Signup = ({ onClose }) => {
         </div>
         <button type="submit">Sign Up</button>
       </form>
+      {success && <p style={{color: 'green'}}>{success}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button onClick={onClose}>Close</button>
+
     </div>
   );
 };
