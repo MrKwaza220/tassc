@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TaskForm from '../taskform/TaskForm';
-import "./TaskList.css";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faEye, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import './TaskList.css';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -16,8 +17,8 @@ const TaskList = () => {
       const token = localStorage.getItem('token'); // Or however you are storing the token
       const config = {
         headers: {
-          'Authorization': `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       };
       const res = await axios.get('http://localhost:5000/api/tasks', config);
       setTasks(res.data); // Update the state with fetched tasks
@@ -27,30 +28,6 @@ const TaskList = () => {
       setError('Failed to fetch tasks.');
     }
   };
-
-  const addTask = async (taskData) => {
-    const token = localStorage.getItem('token');
-    console.log('Adding task with token:', token);
-
-    if (!token) {
-      setError('No token found, please login again.');
-      return;
-    }
-
-    try {
-      await axios.post('http://localhost:5000/api/tasks', taskData, {
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
-      fetchTasks(); // Refresh tasks list after adding a new task
-    } catch (err) {
-      console.error('Error adding task:', err.response || err.message);
-      setError('Failed to add task.');
-    }
-  };
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
 
   const handleAddTaskClick = () => {
     setCurrentTask(null);
@@ -75,7 +52,7 @@ const TaskList = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
-        headers: { 'Authorization': `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       fetchTasks();
       console.log('Task deleted successfully');
@@ -83,30 +60,41 @@ const TaskList = () => {
       console.error('Error deleting task:', err.response || err.message);
     }
   };
-  
 
   const closeDetails = () => {
     setViewDetails(null);
   };
 
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
   return (
     <div className="task-container">
       <h2>Tasks</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button onClick={handleAddTaskClick}>Add Task</button>
-      {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} onSave={addTask} />}
+      <button className="add-task" onClick={handleAddTaskClick}>
+        <FontAwesomeIcon icon={faPlus} /> Add Task
+      </button>
+      {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} />}
+
       {viewDetails && (
-        <div className="task-details">
-          <h3>Task Details</h3>
-          <p><strong>Task Name:</strong> {viewDetails.name}</p>
-          <p><strong>Description:</strong> {viewDetails.description}</p>
-          <p><strong>Status:</strong> {viewDetails.status}</p>
-          <p><strong>Due Date:</strong> {new Date(viewDetails.dueDate).toLocaleDateString()}</p>
-          <p><strong>Created At:</strong> {new Date(viewDetails.createdAt).toLocaleString()}</p>
-          <p><strong>Last Updated:</strong> {new Date(viewDetails.updatedAt).toLocaleString()}</p>
-          <button onClick={closeDetails}>Close</button>
+        <div className="modal" onClick={closeDetails}>
+          <div className="task-details" onClick={(e) => e.stopPropagation()}>
+            <h3>Task Details</h3>
+            <p><strong>Task Name:</strong> {viewDetails.name}</p>
+            <p><strong>Description:</strong> {viewDetails.description}</p>
+            <p><strong>Status:</strong> {viewDetails.status}</p>
+            <p><strong>Due Date:</strong> {new Date(viewDetails.dueDate).toLocaleDateString()}</p>
+            <p><strong>Created At:</strong> {new Date(viewDetails.createdAt).toLocaleString()}</p>
+            <p><strong>Last Updated:</strong> {new Date(viewDetails.updatedAt).toLocaleString()}</p>
+            <button className="close-button" onClick={closeDetails}>
+              Close
+            </button>
+          </div>
         </div>
       )}
+
       {tasks.length === 0 ? (
         <p>No tasks loaded</p>
       ) : (
@@ -128,9 +116,15 @@ const TaskList = () => {
                 <td>{task.status}</td>
                 <td>{new Date(task.dueDate).toLocaleDateString()}</td>
                 <td className="actions">
-                  <button className="edit" onClick={() => handleEditClick(task)}>Edit</button>
-                  <button className="view" onClick={() => handleViewDetailsClick(task)}>View Details</button>
-                  <button className="delete" onClick={() => handleDeleteClick(task._id)}>Delete</button>
+                  <button className="edit" onClick={() => handleEditClick(task)}>
+                    <FontAwesomeIcon icon={faEdit} /> 
+                  </button>
+                  <button className="view" onClick={() => handleViewDetailsClick(task)}>
+                    <FontAwesomeIcon icon={faEye} /> 
+                  </button>
+                  <button className="delete" onClick={() => handleDeleteClick(task._id)}>
+                    <FontAwesomeIcon icon={faTrash} /> 
+                  </button>
                 </td>
               </tr>
             ))}
