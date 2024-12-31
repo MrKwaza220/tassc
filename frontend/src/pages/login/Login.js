@@ -56,7 +56,7 @@ const Login = ({ onClose }) => {
             placeholder="password"
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">Sign In</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
