@@ -7,6 +7,9 @@ const TaskForm = ({ onClose, task }) => {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Pending");
   const [dueDate, setDueDate] = useState("");
+  const [dueTime, setDueTime] = useState("");  // New state for time
+  const [timer, setTimer] = useState("");      // New state for timer (e.g., 2 hours)
+  const [priority, setPriority] = useState("Medium");  // New state for priority
 
   useEffect(() => {
     if (task) {
@@ -14,6 +17,9 @@ const TaskForm = ({ onClose, task }) => {
       setDescription(task.description);
       setStatus(task.status);
       setDueDate(new Date(task.dueDate).toISOString().split("T")[0]);
+      setDueTime(task.dueTime ? task.dueTime : "");  // Set time if exists
+      setTimer(task.timer ? task.timer : "");        // Set timer if exists
+      setPriority(task.priority ? task.priority : "Medium"); // Set priority
     }
   }, [task]);
 
@@ -22,7 +28,14 @@ const TaskForm = ({ onClose, task }) => {
     const token = localStorage.getItem("token");
     console.log("Retrieved token:", token);
 
-    const taskData = { name, description, status, dueDate };
+    const taskData = { 
+      name, 
+      description, 
+      status, 
+      dueDate: `${dueDate}T${dueTime}`,  // Combine date and time
+      timer,
+      priority
+    };
     console.log("Submitting task data:", taskData);
 
     try {
@@ -53,7 +66,7 @@ const TaskForm = ({ onClose, task }) => {
       }
       onClose();
     } catch (err) {
-      console.error('Error saving task:', err);
+      console.error("Error saving task:", err);
     }
   };
 
@@ -101,6 +114,36 @@ const TaskForm = ({ onClose, task }) => {
               onChange={(e) => setDueDate(e.target.value)}
               required
             />
+          </div>
+          <div>
+            <label>Due Time:</label>
+            <input
+              type="time"
+              value={dueTime}
+              onChange={(e) => setDueTime(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Timer (hours):</label>
+            <input
+              type="number"
+              value={timer}
+              onChange={(e) => setTimer(e.target.value)}
+              min="0"
+              step="1"
+            />
+          </div>
+          <div>
+            <label>Priority:</label>
+            <select
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+            >
+              <option value="Urgent">Urgent</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
           </div>
           <button type="submit">{task ? "Update Task" : "Add Task"}</button>
           <button type="button" className="cancel-button" onClick={onClose}>
