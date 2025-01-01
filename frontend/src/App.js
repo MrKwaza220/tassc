@@ -19,13 +19,12 @@ const App = () => {
             <NavBar />
             <Home />
             <About />
-            <AuthForm />
             </>
             } 
             />
           <Route path="/about" element={<About />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/authform" element={<AuthForm />} /> */}
+          <Route path="/authform" element={<AuthForm />} />
           
           
         </Routes>
