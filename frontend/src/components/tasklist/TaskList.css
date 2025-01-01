@@ -45,18 +45,33 @@
 }
 
 .task-container button.edit {
-  background-color: #FFC107;
-  color: #333;
+  /* background-color: #FFC107; */
+  background-color: #1d1d1d;
+  color: white;
+  border: 1px solid #ddd;
+  height: 30px;
+  width: 30px;
+  padding: 0;
 }
 
 .task-container button.view {
-  background-color: #2196F3;
+  /* background-color: #2196F3; */
+  background-color: #1d1d1d;
   color: white;
+  border: 1px solid #ddd;
+  height: 30px;
+  width: 30px;
+  padding: 0;
 }
 
 .task-container button.delete {
-  background-color: #F44336;
+  /* background-color: #F44336; */
+  background-color: #1d1d1d;
   color: white;
+  border: 1px solid #ddd;
+  height: 30px;
+  width: 30px;
+  padding: 0;
 }
 
 
