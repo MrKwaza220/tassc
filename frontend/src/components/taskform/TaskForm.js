@@ -20,9 +20,9 @@ const TaskForm = ({ onClose, task }) => {
       setDescription(task.description);
       setStatus(task.status);
       setDueDate(new Date(task.dueDate).toISOString().split("T")[0]);
-      setDueTime(task.dueTime ? task.dueTime : ""); // Set time if exists
-      setTimer(task.timer ? task.timer : ""); // Set timer if exists
-      setPriority(task.priority ? task.priority : "Medium"); // Set priority
+      setDueTime(task.dueTime ? task.dueTime : ""); 
+      setTimer(task.timer ? task.timer : ""); 
+      setPriority(task.priority ? task.priority : "Medium"); 
     }
   }, [task]);
 
@@ -35,7 +35,7 @@ const TaskForm = ({ onClose, task }) => {
       name,
       description,
       status,
-      dueDate: `${dueDate}T${dueTime}`, // Combine date and time
+      dueDate: `${dueDate}T${dueTime}`, 
       timer,
       priority,
     };
@@ -118,7 +118,7 @@ const TaskForm = ({ onClose, task }) => {
                 <option value="Completed">Completed</option>
               </select>
             </div>
-            <div className="input-group">
+            <div className="input-date">
               <label>Due Date:</label>
               <input
                 type="date"
@@ -127,7 +127,7 @@ const TaskForm = ({ onClose, task }) => {
                 required
               />
             </div>
-            <div className="input-group">
+            <div className="input-due-time">
               <label>Due Time:</label>
               <input
                 type="time"
@@ -135,8 +135,8 @@ const TaskForm = ({ onClose, task }) => {
                 onChange={(e) => setDueTime(e.target.value)}
               />
             </div>
-            <div className="input-group">
-              <label>Timer (hours):</label>
+            <div className="input-set-timer">
+              <label>Set Timer (hours):</label>
               <input
                 type="number"
                 value={timer}
@@ -145,7 +145,7 @@ const TaskForm = ({ onClose, task }) => {
                 step="1"
               />
             </div>
-            <div className="input-group">
+            <div className="input-priority">
               <label>Priority:</label>
               <select
                 value={priority}
