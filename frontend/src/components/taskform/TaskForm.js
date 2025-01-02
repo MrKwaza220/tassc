@@ -77,30 +77,32 @@ const TaskForm = ({ onClose, task }) => {
         <h2>{task ? "Edit Task" : "Add Task"}</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Task Name:</label>
+           
             <input
               type="text"
+              placeholder="Enter task name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required
+              required              
             />
           </div>
           <div>
-            <label>Description:</label>
+        
             <input
               type="text"
               value={description}
+              placeholder="Enter task description"
               onChange={(e) => setDescription(e.target.value)}
               required
             />
           </div>
           <div>
-            <label>Status:</label>
             <select
+              placeholder="Select status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               required
-            >
+            > <option value="" disabled>Select status</option>
               <option value="Pending">Pending</option>
               <option value="In Progress">In Progress</option>
               <option value="Completed">Completed</option>
