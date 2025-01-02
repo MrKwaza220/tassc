@@ -21,14 +21,29 @@ const TaskSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  createdAt: {
+  
+  dueDate: {
     type: Date,
-    default: Date.now
+    required: true
   },
-  updatedAt: {
-    type: Date,
-    default: Date.now
-  }
+  dueTime: {
+    type: String
+  },
+  timer: {
+    type: Number
+  },
+  priority: {
+    type: String
+  },
+
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now
+  // },
+  // updatedAt: {
+  //   type: Date,
+  //   default: Date.now
+  // }
 });
 
 module.exports = mongoose.model('Task', TaskSchema);
