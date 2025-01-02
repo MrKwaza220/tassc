@@ -47,15 +47,14 @@ router.post('/', authMiddleware, async (req, res) => {
 
 // Update a task
 router.put('/:id', authMiddleware, async (req, res) => {
-  const { name, description, status, dueDate } = req.body;
-  const taskFields = { name, description, status, dueDate };
+  const { name, description, status, dueDate, dueTime, timer, priority } = req.body;
+  const taskFields = { name, description, status, dueDate, dueTime, timer, priority };
 
   try {
     let task = await Task.findById(req.params.id);
 
     if (!task) return res.status(404).json({ msg: 'Task not found' });
 
-    // Ensure user owns task
     if (task.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
