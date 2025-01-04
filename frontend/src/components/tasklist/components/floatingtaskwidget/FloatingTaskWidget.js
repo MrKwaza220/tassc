@@ -35,7 +35,10 @@ const FloatingTaskWidget = ({ tasks }) => {
   };
 
   return (
-    <Draggable position={widgetPosition} onStop={handleDragStop}>
+    <Draggable
+      position={widgetPosition}
+      onStop={handleDragStop}
+    >
       <div className="widget-wrapper">
         {isVisible ? (
           <div className="floating-widget">
