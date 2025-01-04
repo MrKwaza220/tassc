@@ -39,7 +39,7 @@ const FloatingTaskWidget = ({ tasks }) => {
       position={widgetPosition}
       onStop={handleDragStop}
     >
-      <div className="widget-wrapper">
+      <div>
         {isVisible ? (
           <div className="floating-widget">
             <div className="widget-header">
@@ -65,9 +65,11 @@ const FloatingTaskWidget = ({ tasks }) => {
             </div>
           </div>
         ) : (
-          <button className="widget-toggle" onClick={toggleVisibility}>
-            Show Tasks
-          </button>
+          <div className="widget-toggle-wrapper">
+            <button className="widget-toggle" onClick={toggleVisibility}>
+              Show Tasks
+            </button>
+          </div>
         )}
       </div>
     </Draggable>
