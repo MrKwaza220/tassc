@@ -4,7 +4,7 @@ import TaskForm from "../taskform/TaskForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faEye, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./TaskList.css";
-import FloatingTaskWidget from "./components/floatingtaskwidget/FloatingTaskWidget";
+
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -173,7 +173,6 @@ const TaskList = () => {
         </table>
       )}
 
-      <FloatingTaskWidget tasks={tasks} />
     </div>
   );
 };
