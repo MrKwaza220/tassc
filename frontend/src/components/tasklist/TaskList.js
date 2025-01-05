@@ -138,38 +138,37 @@ const TaskList = () => {
             </tr>
           </thead>
           <tbody>
-            {tasks.map((task) => (
-              <tr key={task._id}>
-                <td>{task.name}</td>
-                <td>{task.description}</td>
-                <td>{task.status}</td>
-                <td>{new Date(task.dueDate).toLocaleDateString()}</td>
-                <td>{task.dueTime || "N/A"}</td>
-                <td>{task.timer ? `${task.timer} hours` : "N/A"}</td>
-                <td>{task.priority}</td>
-                <td className="actions">
-                  <button className="edit" onClick={() => handleEditClick(task)}>
-                    <FontAwesomeIcon icon={faEdit} style={{ fontSize: "14px" }} />
-                  </button>
-                  <button
-                    className="view"
-                    onClick={() => handleViewDetailsClick(task)}
-                  >
-                    <FontAwesomeIcon icon={faEye} style={{ fontSize: "14px" }} />
-                  </button>
-                  <button
-                    className="delete"
-                    onClick={() => handleDeleteClick(task._id)}
-                  >
-                    <FontAwesomeIcon
-                      icon={faTrash}
-                      style={{ fontSize: "14px" }}
-                    />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+  {tasks.map((task) => (
+    <tr key={task._id}>
+      <td>{task.name}</td>
+      <td>{task.description}</td>
+      <td className={`status-${task.status.toLowerCase().replace(" ", "-")}`}>
+        {task.status}
+      </td>
+      <td>{new Date(task.dueDate).toLocaleDateString()}</td>
+      <td>{task.dueTime || "N/A"}</td>
+      <td>{task.timer ? `${task.timer} hours` : "N/A"}</td>
+      <td className={`priority-${task.priority.toLowerCase()}`}>
+        {task.priority}
+      </td>
+      <td className="actions">
+        <button className="edit" onClick={() => handleEditClick(task)}>
+          <FontAwesomeIcon icon={faEdit} style={{ fontSize: "14px" }} />
+        </button>
+        <button className="view" onClick={() => handleViewDetailsClick(task)}>
+          <FontAwesomeIcon icon={faEye} style={{ fontSize: "14px" }} />
+        </button>
+        <button
+          className="delete"
+          onClick={() => handleDeleteClick(task._id)}
+        >
+          <FontAwesomeIcon icon={faTrash} style={{ fontSize: "14px" }} />
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
       )}
 
