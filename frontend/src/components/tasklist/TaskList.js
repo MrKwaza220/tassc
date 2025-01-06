@@ -124,25 +124,25 @@ const TaskList = () => {
         <table className="task-table">
           <thead>
             <tr>
-              <th>Task Name</th>
-              <th>Description</th>
-              <th>Status</th>
-              <th>Due Date</th>
-              <th>Due Time</th>
-              <th>Timer</th>
-              <th>Priority</th>
-              <th>Actions</th>
+              <th className="task-head">Task Name</th>
+              <th className="task-head">Description</th>
+              <th className="task-head">Status</th>
+              <th className="task-head">Due Date</th>
+              <th className="task-head">Due Time</th>
+              <th className="task-head">Timer</th>
+              <th className="task-head">Priority</th>
+              <th className="task-head">Actions</th>
             </tr>
           </thead>
           <tbody>
             {tasks.map((task) => (
               <tr key={task._id}>
-                <td>{task.name}</td>
-                <td>{task.description}</td>
+                <td className="task-names">{task.name}</td>
+                <td className="descriptions">{task.description}</td>
                 <td className={`status-${task.status.toLowerCase().replace(" ", "-")}`}>
                   {task.status}
                 </td>
-                <td>{new Date(task.dueDate).toLocaleDateString()}</td>
+                <td className="due-dates">{new Date(task.dueDate).toLocaleDateString()}</td>
                 <td>{task.dueTime || "N/A"}</td>
                 <td>{task.timer ? `${task.timer} hours` : "N/A"}</td>
                 <td className={`priority-${task.priority.toLowerCase()}`}>
