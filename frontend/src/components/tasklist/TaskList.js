@@ -99,7 +99,7 @@ const TaskList = () => {
       {viewDetails && (
         <div className="modal" onClick={closeDetails}>
           <div className="task-details" onClick={(e) => e.stopPropagation()}>
-            <h3>Task Details</h3>
+            <h3>TASK DETAILS</h3>
             <p><strong>Task Name:</strong> {viewDetails.name}</p>
             <p><strong>Description:</strong> {viewDetails.description}</p>
             <p className={`status-${viewDetails.status.toLowerCase().replace(" ", "-")}`}>
@@ -107,12 +107,12 @@ const TaskList = () => {
             </p>
             <p><strong>Due Date:</strong> {new Date(viewDetails.dueDate).toLocaleDateString()}</p>
             <p><strong>Due Time:</strong> {viewDetails.dueTime || "N/A"}</p>
-            <p><strong>Timer:</strong> {viewDetails.timer ? `${viewDetails.timer} hours` : "N/A"}</p>
+            {/* <p><strong>Timer:</strong> {viewDetails.timer ? `${viewDetails.timer} hours` : "N/A"}</p> */}
             <p className={`priority-${viewDetails.priority.toLowerCase()}`}>
               <strong>Priority:</strong> {viewDetails.priority}
             </p>
             <button className="close-button" onClick={closeDetails}>
-              Close
+              Cancel
             </button>
           </div>
         </div>
@@ -129,7 +129,7 @@ const TaskList = () => {
               <th className="task-head">Status</th>
               <th className="task-head">Due Date</th>
               <th className="task-head">Due Time</th>
-              <th className="task-head">Timer</th>
+              {/* <th className="task-head">Timer</th> */}
               <th className="task-head">Priority</th>
               <th className="task-head">Actions</th>
             </tr>
@@ -137,14 +137,14 @@ const TaskList = () => {
           <tbody>
             {tasks.map((task) => (
               <tr key={task._id}>
-                <td className="task-names">{task.name}</td>
-                <td className="descriptions">{task.description}</td>
+                <td className="task-body">{task.name}</td>
+                <td className="task-body">{task.description}</td>
                 <td className={`status-${task.status.toLowerCase().replace(" ", "-")}`}>
                   {task.status}
                 </td>
-                <td className="due-dates">{new Date(task.dueDate).toLocaleDateString()}</td>
-                <td>{task.dueTime || "N/A"}</td>
-                <td>{task.timer ? `${task.timer} hours` : "N/A"}</td>
+                <td className="task-body">{new Date(task.dueDate).toLocaleDateString()}</td>
+                <td className="task-body">{task.dueTime || "N/A"}</td>
+                {/* <td>{task.timer ? `${task.timer} hours` : "N/A"}</td> */}
                 <td className={`priority-${task.priority.toLowerCase()}`}>
                   {task.priority}
                 </td>
