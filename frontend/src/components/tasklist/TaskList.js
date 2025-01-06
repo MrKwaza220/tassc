@@ -80,13 +80,13 @@ const TaskList = () => {
           className={viewMode === "table" ? "active" : ""}
           onClick={() => setViewMode("table")}
         >
-          <FontAwesomeIcon icon={faTable} style={{fontSize: "16px"}} /> 
+          <FontAwesomeIcon icon={faTable} style={{fontSize: "18px"}} /> 
         </button>
         <button
           className={viewMode === "grid" ? "active" : ""}
           onClick={() => setViewMode("grid")}
         >
-          <FontAwesomeIcon icon={faTh} style={{fontSize: "16px"}} /> 
+          <FontAwesomeIcon icon={faTh} style={{fontSize: "18px"}} /> 
         </button>
       </div>
 
