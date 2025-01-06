@@ -135,7 +135,7 @@ const TaskForm = ({ onClose, task }) => {
                 onChange={(e) => setDueTime(e.target.value)}
               />
             </div>
-            <div className="input-set-timer">
+            {/* <div className="input-set-timer">
               <label>Set Timer (hours):</label>
               <input
                 type="number"
@@ -144,7 +144,7 @@ const TaskForm = ({ onClose, task }) => {
                 min="0"
                 step="1"
               />
-            </div>
+            </div> */}
             <div className="input-priority">
               <label>Priority:</label>
               <select
