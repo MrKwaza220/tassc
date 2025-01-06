@@ -10,6 +10,7 @@
   color: #ccc;
 }
 
+
 .view-toggle {
   margin-bottom: 15px;
 }
@@ -26,7 +27,6 @@
 }
 
 .view-toggle button.active {
-  /* background-color: #4CAF50; */
   background-color: #1d1d1d;
   color: #4caf50;
 }
@@ -38,6 +38,7 @@
 .task-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .task-table th,
@@ -61,7 +62,14 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.actions .edit {
+.task-table th{
+  color: #4caf50;
+}
+.actions 
+.edit,
+.delete,
+.view
+ {
   background-color: #1d1d1d;
   width: 25px;
   height: 30px;
@@ -69,22 +77,12 @@
   border: none;
 }
 
-.actions .delete {
-  background-color: #1d1d1d;
-  width: 25px;
-  height: 30px;
-  padding: 0;
-  border: none;
+.actions
+.delete:hover,
+.edit:hover,
+.view:hover{
+  color:#4caf50;
 }
-
-.actions .view {
-  background-color: #1d1d1d;
-  width: 25px;
-  height: 30px;
-  padding: 0;
-  border: none;
-}
-
 .status-pending {
   color: orange;
 }
