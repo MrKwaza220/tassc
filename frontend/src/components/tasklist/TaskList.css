@@ -65,6 +65,29 @@
 .task-table th{
   color: #4caf50;
 }
+
+.task-body{
+  color: white;
+}
+
+.task-details{
+  background-color: #1d1d1d;
+  font-size: 20px;
+  color: #ddd;
+  padding: 40px;
+  border-radius: 20px;
+  
+}
+
+.task-details h3{
+  color: #4caf50;
+}
+
+.task-details button {
+  font-size: 12px;
+  background-color: #4caf50;
+}
+
 .actions 
 .edit,
 .delete,
