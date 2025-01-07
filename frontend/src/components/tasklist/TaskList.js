@@ -82,6 +82,10 @@ const TaskList = () => {
       <h2>Tasks</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
 
+      <button className="add-task" onClick={handleAddTaskClick}>
+        <FontAwesomeIcon icon={faPlus} /> Add Task
+      </button>
+
       <div className="view-toggle">
         <button
           className={viewMode === "table" ? "active" : ""}
@@ -97,10 +101,6 @@ const TaskList = () => {
           <FontAwesomeIcon icon={faTh} style={{ fontSize: "18px" }} />
         </button>
       </div>
-
-      <button className="add-task" onClick={handleAddTaskClick}>
-        <FontAwesomeIcon icon={faPlus} /> Add Task
-      </button>
 
       {showForm && (
         <TaskForm onClose={handleTaskFormClose} task={currentTask} />
@@ -232,7 +232,10 @@ const TaskList = () => {
                 <strong>Priority:</strong> {task.priority}
               </p>
               <div className="grid-actions">
-                <button className="grid-edit" onClick={() => handleEditClick(task)}>
+                <button
+                  className="grid-edit"
+                  onClick={() => handleEditClick(task)}
+                >
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
                 <button

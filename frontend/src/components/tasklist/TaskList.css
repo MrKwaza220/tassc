@@ -11,7 +11,9 @@
 }
 
 .view-toggle {
-  margin-bottom: 15px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .view-toggle button {
