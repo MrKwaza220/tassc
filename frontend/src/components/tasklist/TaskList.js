@@ -79,14 +79,17 @@ const TaskList = () => {
 
   return (
     <div className="task-container">
-      <h2>Tasks</h2>
+      {/* <h2>Tasks</h2> */}
       {error && <p style={{ color: "red" }}>{error}</p>}
+
+     
+
+      <div className="view-toggle">
 
       <button className="add-task" onClick={handleAddTaskClick}>
         <FontAwesomeIcon icon={faPlus} /> Add Task
       </button>
 
-      <div className="view-toggle">
         <button
           className={viewMode === "table" ? "active" : ""}
           onClick={() => setViewMode("table")}
