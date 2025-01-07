@@ -10,7 +10,6 @@
   color: #ccc;
 }
 
-
 .view-toggle {
   margin-bottom: 15px;
 }
@@ -48,38 +47,23 @@
   text-align: left;
 }
 
-.task-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.task-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.task-table th{
+.task-table th {
   color: #4caf50;
 }
 
-.task-body{
+.task-body {
   color: white;
 }
 
-.task-details{
+.task-details {
   background-color: #1d1d1d;
   font-size: 20px;
   color: #ddd;
   padding: 40px;
   border-radius: 20px;
-  
 }
 
-.task-details h3{
+.task-details h3 {
   color: #4caf50;
 }
 
@@ -88,11 +72,9 @@
   background-color: #4caf50;
 }
 
-.actions 
-.edit,
+.actions .edit,
 .delete,
-.view
- {
+.view {
   background-color: #1d1d1d;
   width: 25px;
   height: 30px;
@@ -100,11 +82,10 @@
   border: none;
 }
 
-.actions
-.delete:hover,
+.actions .delete:hover,
 .edit:hover,
-.view:hover{
-  color:#4caf50;
+.view:hover {
+  color: #4caf50;
 }
 .status-pending {
   color: orange;
@@ -133,3 +114,61 @@
 .priority-low {
   color: gray;
 }
+
+/* Grid */
+.task-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: .3s;
+}
+
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.task-grid .status-pending {
+  background-color: #f9e1b9; 
+  border-left: 4px solid orange;
+}
+
+.task-grid .status-in-progress {
+  background-color: #e0f7fa; 
+  border-left: 4px solid #0288d1;
+}
+
+.task-grid .status-completed {
+  background-color: #e8f5e9; 
+  border-left: 4px solid green;
+}
+
+.task-grid {
+  border: 0px solid #ccc;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s, background-color 0.5s;
+}
+
+.task-card:hover {
+  transform: scale(1.02);
+}
+
+.task-card h3 {
+  margin: 0 0 10px;
+}
+
+.task-card p {
+  margin: 5px 0;
+}
+
+.task-grid .actions{
+  margin-top: 20px;
+}
+
+

@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TaskForm from "../taskform/TaskForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faEye, faTrash, faPlus, faTable, faTh } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEdit,
+  faEye,
+  faTrash,
+  faPlus,
+  faTable,
+  faTh,
+} from "@fortawesome/free-solid-svg-icons";
 import "./TaskList.css";
 
 const TaskList = () => {
@@ -80,13 +87,14 @@ const TaskList = () => {
           className={viewMode === "table" ? "active" : ""}
           onClick={() => setViewMode("table")}
         >
-          <FontAwesomeIcon icon={faTable} style={{fontSize: "18px"}} /> 
+          <FontAwesomeIcon icon={faTable} style={{ fontSize: "18px" }} />
         </button>
+
         <button
           className={viewMode === "grid" ? "active" : ""}
           onClick={() => setViewMode("grid")}
         >
-          <FontAwesomeIcon icon={faTh} style={{fontSize: "18px"}} /> 
+          <FontAwesomeIcon icon={faTh} style={{ fontSize: "18px" }} />
         </button>
       </div>
 
@@ -94,19 +102,34 @@ const TaskList = () => {
         <FontAwesomeIcon icon={faPlus} /> Add Task
       </button>
 
-      {showForm && <TaskForm onClose={handleTaskFormClose} task={currentTask} />}
+      {showForm && (
+        <TaskForm onClose={handleTaskFormClose} task={currentTask} />
+      )}
 
       {viewDetails && (
         <div className="modal" onClick={closeDetails}>
           <div className="task-details" onClick={(e) => e.stopPropagation()}>
             <h3>TASK DETAILS</h3>
-            <p><strong>Task Name:</strong> {viewDetails.name}</p>
-            <p><strong>Description:</strong> {viewDetails.description}</p>
-            <p className={`status-${viewDetails.status.toLowerCase().replace(" ", "-")}`}>
+            <p>
+              <strong>Task Name:</strong> {viewDetails.name}
+            </p>
+            <p>
+              <strong>Description:</strong> {viewDetails.description}
+            </p>
+            <p
+              className={`status-${viewDetails.status
+                .toLowerCase()
+                .replace(" ", "-")}`}
+            >
               <strong>Status:</strong> {viewDetails.status}
             </p>
-            <p><strong>Due Date:</strong> {new Date(viewDetails.dueDate).toLocaleDateString()}</p>
-            <p><strong>Due Time:</strong> {viewDetails.dueTime || "N/A"}</p>
+            <p>
+              <strong>Due Date:</strong>{" "}
+              {new Date(viewDetails.dueDate).toLocaleDateString()}
+            </p>
+            <p>
+              <strong>Time:</strong> {viewDetails.dueTime || "N/A"}
+            </p>
             {/* <p><strong>Timer:</strong> {viewDetails.timer ? `${viewDetails.timer} hours` : "N/A"}</p> */}
             <p className={`priority-${viewDetails.priority.toLowerCase()}`}>
               <strong>Priority:</strong> {viewDetails.priority}
@@ -128,7 +151,7 @@ const TaskList = () => {
               <th className="task-head">Description</th>
               <th className="task-head">Status</th>
               <th className="task-head">Due Date</th>
-              <th className="task-head">Due Time</th>
+              <th className="task-head">Time</th>
               {/* <th className="task-head">Timer</th> */}
               <th className="task-head">Priority</th>
               <th className="task-head">Actions</th>
@@ -139,23 +162,38 @@ const TaskList = () => {
               <tr key={task._id}>
                 <td className="task-body">{task.name}</td>
                 <td className="task-body">{task.description}</td>
-                <td className={`status-${task.status.toLowerCase().replace(" ", "-")}`}>
+                <td
+                  className={`status-${task.status
+                    .toLowerCase()
+                    .replace(" ", "-")}`}
+                >
                   {task.status}
                 </td>
-                <td className="task-body">{new Date(task.dueDate).toLocaleDateString()}</td>
+                <td className="task-body">
+                  {new Date(task.dueDate).toLocaleDateString()}
+                </td>
                 <td className="task-body">{task.dueTime || "N/A"}</td>
                 {/* <td>{task.timer ? `${task.timer} hours` : "N/A"}</td> */}
                 <td className={`priority-${task.priority.toLowerCase()}`}>
                   {task.priority}
                 </td>
                 <td className="actions">
-                  <button className="edit" onClick={() => handleEditClick(task)}>
+                  <button
+                    className="edit"
+                    onClick={() => handleEditClick(task)}
+                  >
                     <FontAwesomeIcon icon={faEdit} />
                   </button>
-                  <button className="view" onClick={() => handleViewDetailsClick(task)}>
+                  <button
+                    className="view"
+                    onClick={() => handleViewDetailsClick(task)}
+                  >
                     <FontAwesomeIcon icon={faEye} />
                   </button>
-                  <button className="delete" onClick={() => handleDeleteClick(task._id)}>
+                  <button
+                    className="delete"
+                    onClick={() => handleDeleteClick(task._id)}
+                  >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
                 </td>
@@ -166,26 +204,47 @@ const TaskList = () => {
       ) : (
         <div className="task-grid">
           {tasks.map((task) => (
-            <div key={task._id} className="task-card">
+            <div
+              key={task._id}
+              className={`task-card status-${task.status
+                .toLowerCase()
+                .replace(" ", "-")}`}
+            >
               <h3>{task.name}</h3>
-              <p><strong>Description:</strong> {task.description}</p>
-              <p className={`status-${task.status.toLowerCase().replace(" ", "-")}`}>
+              <p className="grid-task">
+                <strong>Description:</strong> {task.description}
+              </p>
+              <p className="grid-task">
                 <strong>Status:</strong> {task.status}
               </p>
-              <p><strong>Due Date:</strong> {new Date(task.dueDate).toLocaleDateString()}</p>
-              <p><strong>Due Time:</strong> {task.dueTime || "N/A"}</p>
-              <p><strong>Timer:</strong> {task.timer ? `${task.timer} hours` : "N/A"}</p>
-              <p className={`priority-${task.priority.toLowerCase()}`}>
+              <p className="grid-task">
+                <strong>Due Date:</strong>{" "}
+                {new Date(task.dueDate).toLocaleDateString()}
+              </p>
+              <p className="grid-task">
+                <strong>Time:</strong> {task.dueTime || "N/A"}
+              </p>
+              {/* <p>
+                <strong>Timer:</strong>{" "}
+                {task.timer ? `${task.timer} hours` : "N/A"}
+              </p> */}
+              <p>
                 <strong>Priority:</strong> {task.priority}
               </p>
               <div className="actions">
                 <button className="edit" onClick={() => handleEditClick(task)}>
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
-                <button className="view" onClick={() => handleViewDetailsClick(task)}>
+                <button
+                  className="view"
+                  onClick={() => handleViewDetailsClick(task)}
+                >
                   <FontAwesomeIcon icon={faEye} />
                 </button>
-                <button className="delete" onClick={() => handleDeleteClick(task._id)}>
+                <button
+                  className="delete"
+                  onClick={() => handleDeleteClick(task._id)}
+                >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
               </div>
