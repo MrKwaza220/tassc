@@ -179,6 +179,11 @@
   border: 1px solid #ccc;
   padding: 8px 12px;
   margin-right: 2px;
+  transition: .5s;
+}
+
+.grid-actions button:hover{
+  transform: scale(1.1);
 }
 
 
