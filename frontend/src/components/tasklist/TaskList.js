@@ -228,21 +228,21 @@ const TaskList = () => {
                 <strong>Timer:</strong>{" "}
                 {task.timer ? `${task.timer} hours` : "N/A"}
               </p> */}
-              <p>
+              <p className="grid-task">
                 <strong>Priority:</strong> {task.priority}
               </p>
-              <div className="actions">
-                <button className="edit" onClick={() => handleEditClick(task)}>
+              <div className="grid-actions">
+                <button className="grid-edit" onClick={() => handleEditClick(task)}>
                   <FontAwesomeIcon icon={faEdit} />
                 </button>
                 <button
-                  className="view"
+                  className="grid-view"
                   onClick={() => handleViewDetailsClick(task)}
                 >
                   <FontAwesomeIcon icon={faEye} />
                 </button>
                 <button
-                  className="delete"
+                  className="grid-delete"
                   onClick={() => handleDeleteClick(task._id)}
                 >
                   <FontAwesomeIcon icon={faTrash} />

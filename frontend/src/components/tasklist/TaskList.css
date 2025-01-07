@@ -72,7 +72,8 @@
   background-color: #4caf50;
 }
 
-.actions .edit,
+.actions 
+.edit,
 .delete,
 .view {
   background-color: #1d1d1d;
@@ -82,7 +83,8 @@
   border: none;
 }
 
-.actions .delete:hover,
+.actions 
+.delete:hover,
 .edit:hover,
 .view:hover {
   color: #4caf50;
@@ -165,10 +167,20 @@
 
 .task-card p {
   margin: 5px 0;
+  color: #1d1d1d;
 }
 
-.task-grid .actions{
+.task-grid .grid-actions{
   margin-top: 20px;
 }
+
+.grid-actions button{
+  background-color: #1d1d1d;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  margin-right: 2px;
+}
+
+
 
 
