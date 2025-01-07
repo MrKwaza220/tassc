@@ -1,27 +1,18 @@
-/* div {
-    font-family: Arial, sans-serif;
+.daily-header {
+    background-color: #f0f0f0;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
+    text-align: center;
+}
 
-h1 {
+.daily-header h1 {
+    font-size: 2em;
     color: #333;
-    font-size: 24px;
     margin-bottom: 10px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #101010;
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #101010;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+.daily-header p {
+    font-size: 1.2em;
+    color: #666;
 }
