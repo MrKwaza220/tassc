@@ -57,6 +57,11 @@ const Dashboard = () => {
           <li className="nav-item" onClick={() => setActiveView("inbox")}>
             {/* <FontAwesomeIcon icon={faEnvelope} style={{marginRight: "50px"}}/> */}
             Inbox
+
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ marginLeft: "20px", fontSize: "12px" }}
+            />
           </li>
           <li className="nav-item" onClick={() => setActiveView("DailyTask")}>
             {/* <FontAwesomeIcon icon={faListCheck} style={{marginRight: "20px"}}/> */}
@@ -64,7 +69,7 @@ const Dashboard = () => {
 
             <FontAwesomeIcon
               icon={faChevronRight}
-              style={{ marginLeft: "8px", fontSize: "16px" }}
+              style={{ marginLeft: "8px", fontSize: "12px" }}
             />
           </li>
           <li className="nav-item" onClick={handleWorkspaceToggle}>
@@ -72,7 +77,7 @@ const Dashboard = () => {
             Workspace
             <FontAwesomeIcon
               icon={isWorkspaceOpen ? faChevronDown : faChevronRight}
-              style={{ marginLeft: "8px", fontSize: "16px" }}
+              style={{ marginLeft: "8px", fontSize: "12px" }}
             />
           </li>
 
