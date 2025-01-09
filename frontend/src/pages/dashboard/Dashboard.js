@@ -3,7 +3,10 @@ import Inbox from "../../sidenavcomponents/inbox/Inbox";
 import DailyTask from "../../sidenavcomponents/dailytask/DailyTask";
 import Workspace from "../../sidenavcomponents/workspace/Workspace";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronRight, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { 
+  faChevronDown, faChevronRight, faPlus, faListCheck, faEnvelope,
+  faBriefcase
+} from "@fortawesome/free-solid-svg-icons";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -52,12 +55,20 @@ const Dashboard = () => {
         <h2 className="sidebar-title">Dashboard</h2>
         <ul className="nav-list">
           <li className="nav-item" onClick={() => setActiveView("inbox")}>
+            {/* <FontAwesomeIcon icon={faEnvelope} style={{marginRight: "50px"}}/> */}
             Inbox
           </li>
           <li className="nav-item" onClick={() => setActiveView("DailyTask")}>
+            {/* <FontAwesomeIcon icon={faListCheck} style={{marginRight: "20px"}}/> */}
             Daily Task
+
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              style={{ marginLeft: "8px", fontSize: "16px" }}
+            />
           </li>
           <li className="nav-item" onClick={handleWorkspaceToggle}>
+           
             Workspace
             <FontAwesomeIcon
               icon={isWorkspaceOpen ? faChevronDown : faChevronRight}
