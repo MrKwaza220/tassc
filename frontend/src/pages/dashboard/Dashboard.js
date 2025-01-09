@@ -11,11 +11,11 @@ import "./Dashboard.css";
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState("inbox");
-  const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false); // Toggle state for workspace
-  const [workspaces, setWorkspaces] = useState([]); // List of created workspaces
-  const [activeWorkspace, setActiveWorkspace] = useState(null); // Currently active workspace
+  const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false); 
+  const [workspaces, setWorkspaces] = useState([]); 
+  const [activeWorkspace, setActiveWorkspace] = useState(null);
 
-  // Function to toggle workspace section
+ 
   const handleWorkspaceToggle = () => {
     setIsWorkspaceOpen(!isWorkspaceOpen);
   };
