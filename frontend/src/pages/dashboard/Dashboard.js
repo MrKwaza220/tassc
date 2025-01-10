@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Inbox from "../../sidenavcomponents/inbox/Inbox";
 import DailyTask from "../../sidenavcomponents/dailytask/DailyTask";
 import Workspace from "../../sidenavcomponents/workspace/Workspace";
-import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/modal/CreateWorkSpaceForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronRight, faPlus} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronRight, faPlus } from "@fortawesome/free-solid-svg-icons";
+import ModalForm from "../modals/ModalForm";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -12,40 +12,17 @@ const Dashboard = () => {
   const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false); 
   const [workspaces, setWorkspaces] = useState([]); 
   const [activeWorkspace, setActiveWorkspace] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
- 
   const handleWorkspaceToggle = () => {
     setIsWorkspaceOpen(!isWorkspaceOpen);
   };
 
-  // Function to create a new workspace
-  const handleCreateWorkspace = () => {
-    const workspaceName = prompt("Enter Workspace Name:");
-    if (workspaceName) {
-      const newWorkspace = { id: Date.now(), name: workspaceName };
-      setWorkspaces([...workspaces, newWorkspace]);
-      setActiveWorkspace(newWorkspace);
-      setActiveView("Workspace");
-    }
-  };
-
-  // Function to render main content
-  const renderContent = () => {
-    switch (activeView) {
-      case "inbox":
-        return <Inbox />;
-      case "DailyTask":
-        return <DailyTask />;
-      case "Workspace":
-        return activeWorkspace ? (
-          <Workspace workspace={activeWorkspace} />
-        ) : (
-          <p>Select a workspace to view its details.</p>
-        );
-      default:
-        return <Inbox />;
-    }
+  const handleCreateWorkspace = (workspace) => {
+    const newWorkspace = { id: Date.now(), ...workspace };
+    setWorkspaces([...workspaces, newWorkspace]);
+    setActiveWorkspace(newWorkspace);
+    setActiveView("Workspace");
   };
 
   return (
@@ -54,25 +31,12 @@ const Dashboard = () => {
         <h2 className="sidebar-title">Dashboard</h2>
         <ul className="nav-list">
           <li className="nav-item" onClick={() => setActiveView("inbox")}>
-            {/* <FontAwesomeIcon icon={faEnvelope} style={{marginRight: "50px"}}/> */}
             Inbox
-
-            <FontAwesomeIcon
-              icon={faChevronRight}
-              style={{ marginLeft: "20px", fontSize: "12px" }}
-            />
           </li>
           <li className="nav-item" onClick={() => setActiveView("DailyTask")}>
-            {/* <FontAwesomeIcon icon={faListCheck} style={{marginRight: "20px"}}/> */}
             Daily Task
-
-            <FontAwesomeIcon
-              icon={faChevronRight}
-              style={{ marginLeft: "8px", fontSize: "12px" }}
-            />
           </li>
           <li className="nav-item" onClick={handleWorkspaceToggle}>
-           
             Workspace
             <FontAwesomeIcon
               icon={isWorkspaceOpen ? faChevronDown : faChevronRight}
@@ -82,7 +46,7 @@ const Dashboard = () => {
 
           {isWorkspaceOpen && (
             <>
-             <ul style={{ marginLeft: "20px" }}>
+              <ul style={{ marginLeft: "20px" }}>
                 {workspaces.map((workspace) => (
                   <li
                     key={workspace.id}
@@ -93,13 +57,11 @@ const Dashboard = () => {
                       setActiveWorkspace(workspace);
                       setActiveView("Workspace");
                     }}
-                    style={{ cursor: "pointer" }}
                   >
                     {workspace.name}
                   </li>
                 ))}
               </ul>
-              
               <button
                 style={{
                   marginLeft: "20px",
@@ -111,20 +73,25 @@ const Dashboard = () => {
                   borderRadius: "5px",
                   cursor: "pointer",
                 }}
-                onClick={handleCreateWorkspace}
+                onClick={() => setIsModalOpen(true)}
               >
                 Create Space
                 <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
               </button>
-
-             
             </>
           )}
         </ul>
       </aside>
-      <main className="content">{renderContent()}</main>
-        {/* Modal for creating workspace */}
-        <CreateWorkSpaceForm
+      <main className="content">{/* Render content dynamically */}
+        {activeView === "Workspace" && activeWorkspace ? (
+          <Workspace workspace={activeWorkspace} />
+        ) : (
+          renderContent()
+        )}
+      </main>
+
+      {/* Modal for Creating Workspace */}
+      <ModalForm
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleCreateWorkspace}
