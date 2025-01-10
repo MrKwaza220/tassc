@@ -11,17 +11,20 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
       onSubmit({ name: workspaceName, description });
       setWorkspaceName("");
       setDescription("");
-      onClose();
+      onClose(); // Close modal after submission
     } else {
       alert("Please fill in all fields.");
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen) return null; // Only render modal if `isOpen` is true
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div
+        className="modal-content"
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+      >
         <h2>Create Workspace</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
