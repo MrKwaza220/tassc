@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import Inbox from "../../sidenavcomponents/inbox/Inbox";
 import DailyTask from "../../sidenavcomponents/dailytask/DailyTask";
 import Workspace from "../../sidenavcomponents/workspace/Workspace";
+import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/modal/CreateWorkSpaceForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  faChevronDown, faChevronRight, faPlus, faListCheck, faEnvelope,
-  faBriefcase
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronRight, faPlus} from "@fortawesome/free-solid-svg-icons";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -14,6 +12,7 @@ const Dashboard = () => {
   const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false); 
   const [workspaces, setWorkspaces] = useState([]); 
   const [activeWorkspace, setActiveWorkspace] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
  
   const handleWorkspaceToggle = () => {
@@ -124,6 +123,12 @@ const Dashboard = () => {
         </ul>
       </aside>
       <main className="content">{renderContent()}</main>
+        {/* Modal for creating workspace */}
+        <CreateWorkSpaceForm
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleCreateWorkspace}
+      />
     </div>
   );
 };
