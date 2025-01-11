@@ -3,16 +3,20 @@ import Inbox from "../../sidenavcomponents/inbox/Inbox";
 import DailyTask from "../../sidenavcomponents/dailytask/DailyTask";
 import Workspace from "../../sidenavcomponents/workspace/Workspace";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronRight, faPlus } from "@fortawesome/free-solid-svg-icons";
-import ModalForm from "../modals/ModalForm";
+import {
+  faChevronDown,
+  faChevronRight,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
+import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/createworkspaceform/CreateWorkSpaceForm";
 import "./Dashboard.css";
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState("inbox");
-  const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false); 
-  const [workspaces, setWorkspaces] = useState([]); 
+  const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false);
+  const [workspaces, setWorkspaces] = useState([]);
   const [activeWorkspace, setActiveWorkspace] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleWorkspaceToggle = () => {
     setIsWorkspaceOpen(!isWorkspaceOpen);
@@ -23,6 +27,24 @@ const Dashboard = () => {
     setWorkspaces([...workspaces, newWorkspace]);
     setActiveWorkspace(newWorkspace);
     setActiveView("Workspace");
+    setIsModalOpen(false); // Close the modal after creation
+  };
+
+  const renderContent = () => {
+    switch (activeView) {
+      case "inbox":
+        return <Inbox />;
+      case "DailyTask":
+        return <DailyTask />;
+      case "Workspace":
+        return activeWorkspace ? (
+          <Workspace workspace={activeWorkspace} />
+        ) : (
+          <p>Select a workspace to view its details.</p>
+        );
+      default:
+        return <Inbox />;
+    }
   };
 
   return (
@@ -78,24 +100,21 @@ const Dashboard = () => {
                 Create Space
                 <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
               </button>
+
+              {/* Modal for Creating Workspace */}
+              <CreateWorkSpaceForm
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onSubmit={handleCreateWorkspace}
+              />
             </>
           )}
         </ul>
       </aside>
-      <main className="content">{/* Render content dynamically */}
-        {activeView === "Workspace" && activeWorkspace ? (
-          <Workspace workspace={activeWorkspace} />
-        ) : (
-          renderContent()
-        )}
+      <main className="content">
+        {/* Render content dynamically */}
+        {renderContent()}
       </main>
-
-      {/* Modal for Creating Workspace */}
-      <ModalForm
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleCreateWorkspace}
-      />
     </div>
   );
 };
