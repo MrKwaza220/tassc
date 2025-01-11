@@ -12,6 +12,7 @@
 }
 
 .modal-content {
+  position: relative; /* Set relative positioning for the cancel button */
   background: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -60,15 +61,16 @@
 }
 
 .btn-cancel {
-  background-color: #dc3545;
-  color: #fff;
-  padding: 10px 20px;
+  position: absolute; 
+  top: -15px; 
+  right: -50px; 
+  background: transparent;
+  color: #dc3545;
   border: none;
-  border-radius: 5px;
+  font-size: 1.5rem; 
   cursor: pointer;
 }
 
-.btn-submit:hover,
 .btn-cancel:hover {
   opacity: 0.9;
 }
