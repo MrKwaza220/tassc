@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./CreateWorkSpaceForm.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
   const [workspaceName, setWorkspaceName] = useState("");
@@ -43,16 +45,14 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter description"
-              required
             />
           </div>
           <div className="form-actions">
             <button type="submit" className="btn-submit">
               Create
+              <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
             </button>
-            <button type="button" className="btn-cancel" onClick={onClose}>
-              Cancel
-            </button>
+            
           </div>
         </form>
       </div>
