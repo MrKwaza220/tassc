@@ -26,6 +26,7 @@
   margin-bottom: 20px;
   font-size: 1.5rem;
   text-align: center;
+  color: #28a745;
 }
 
 .form-group {
@@ -36,6 +37,7 @@
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #28a745;
 }
 
 .form-group input,
@@ -62,12 +64,12 @@
 
 .btn-cancel {
   position: absolute; 
-  top: -15px; 
-  right: -50px; 
+  top: -20px; 
+  right: -55px; 
   background: transparent;
   color: #dc3545;
   border: none;
-  font-size: 1.5rem; 
+  font-size: 1.7rem; 
   cursor: pointer;
 }
 
