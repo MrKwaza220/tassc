@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CreateWorkSpaceForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
   const [workspaceName, setWorkspaceName] = useState("");
@@ -23,13 +23,22 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
+
+           
       <div
         className="modal-content"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-      >
+      >   
+      <button type="button" className="btn-cancel" onClick={onClose}>
+      
+      <FontAwesomeIcon icon={faCircleXmark} />
+    </button>
+         
         <h2>Create Workspace</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
+            
+
             <label>Workspace Name</label>
             <input
               type="text"
