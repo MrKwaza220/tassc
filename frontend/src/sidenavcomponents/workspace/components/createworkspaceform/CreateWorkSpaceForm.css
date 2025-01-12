@@ -12,7 +12,7 @@
 }
 
 .modal-content {
-  position: relative; /* Set relative positioning for the cancel button */
+  position: relative; 
   background: #fff;
   padding: 20px;
   border-radius: 8px;
