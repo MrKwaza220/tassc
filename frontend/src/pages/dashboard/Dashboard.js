@@ -27,7 +27,7 @@ const Dashboard = () => {
     setWorkspaces([...workspaces, newWorkspace]);
     setActiveWorkspace(newWorkspace);
     setActiveView("Workspace");
-    setIsModalOpen(false); // Close the modal after creation
+    setIsModalOpen(false); 
   };
 
   const renderContent = () => {
@@ -101,7 +101,6 @@ const Dashboard = () => {
                 <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
               </button>
 
-              {/* Modal for Creating Workspace */}
               <CreateWorkSpaceForm
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
@@ -112,7 +111,7 @@ const Dashboard = () => {
         </ul>
       </aside>
       <main className="content">
-        {/* Render content dynamically */}
+      
         {renderContent()}
       </main>
     </div>
