@@ -9,8 +9,8 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (workspaceName && description) {
-      onSubmit({ name: workspaceName, description });
+    if (workspaceName) {
+      onSubmit({ name: workspaceName});
       setWorkspaceName("");
       setDescription("");
       onClose(); 
