@@ -54,3 +54,28 @@
 .content h1 {
     margin-bottom: 10px;
 }
+
+.workspace-menu {
+    position: absolute;
+    background: #1d1d1d;
+    border: 1px solid #1d1d1d;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .workspace-menu button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .workspace-menu button:hover {
+    background-color: #5e5e5e;
+  }
+  
