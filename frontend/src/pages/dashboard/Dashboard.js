@@ -27,7 +27,7 @@ const Dashboard = () => {
     setWorkspaces([...workspaces, newWorkspace]);
     setActiveWorkspace(newWorkspace);
     setActiveView("Workspace");
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
   };
 
   const renderContent = () => {
@@ -77,7 +77,7 @@ const Dashboard = () => {
                     }`}
                     onClick={() => {
                       setActiveWorkspace(workspace);
-                      setActiveView("Workspace");
+                      setActiveView("workspace");
                     }}
                   >
                     {workspace.name}
@@ -110,10 +110,7 @@ const Dashboard = () => {
           )}
         </ul>
       </aside>
-      <main className="content">
-      
-        {renderContent()}
-      </main>
+      <main className="content">{renderContent()}</main>
     </div>
   );
 };

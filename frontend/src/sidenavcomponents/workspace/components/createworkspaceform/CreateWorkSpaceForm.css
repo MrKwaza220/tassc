@@ -14,7 +14,7 @@
 .modal-content {
   position: relative; 
   background: #fff;
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
   max-width: 400px;
   width: 100%;
@@ -36,16 +36,22 @@
 .form-group label {
   display: block;
   font-weight: bold;
+  text-align: start;
   margin-bottom: 5px;
   color: #28a745;
 }
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
+  width: 300px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  
+}
+
+.form-group textarea{
+  height: 100px;
 }
 
 .form-actions {
@@ -67,7 +73,7 @@
   top: -20px; 
   right: -55px; 
   background: transparent;
-  color: #dc3545;
+  color: #28a745;
   border: none;
   font-size: 1.7rem; 
   cursor: pointer;
