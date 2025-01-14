@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronRight,
-  faPlus, faFolder
+  faPlus, faFolder,
+  faInbox,
+  faListCheck
 } from "@fortawesome/free-solid-svg-icons";
 import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/createworkspaceform/CreateWorkSpaceForm";
 import "./Dashboard.css";
@@ -53,10 +55,13 @@ const Dashboard = () => {
         <h2 className="sidebar-title">Dashboard</h2>
         <ul className="nav-list">
           <li className="nav-item" onClick={() => setActiveView("inbox")}>
+          <FontAwesomeIcon icon={faInbox} style={{marginRight: "10px"}} />
             Inbox
           </li>
           <li className="nav-item" onClick={() => setActiveView("DailyTask")}>
-            Daily Task
+          <FontAwesomeIcon icon={faListCheck} style={{marginRight: "10px"}} />
+
+            Daily Tasks
           </li>
           <li className="nav-item" onClick={handleWorkspaceToggle}>
             Workspace
@@ -80,7 +85,7 @@ const Dashboard = () => {
                       setActiveView("workspace");
                     }}
                   >
-                    <FontAwesomeIcon icon={faFolder} style={{marginRight: "20px"}} />
+                    <FontAwesomeIcon icon={faFolder} style={{marginRight: "10px"}} />
                     {workspace.name}
                   </li>
                 ))}
