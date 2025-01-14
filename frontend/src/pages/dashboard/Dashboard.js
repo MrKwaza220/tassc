@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronRight,
-  faPlus,
+  faPlus, faFolder
 } from "@fortawesome/free-solid-svg-icons";
 import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/createworkspaceform/CreateWorkSpaceForm";
 import "./Dashboard.css";
@@ -80,6 +80,7 @@ const Dashboard = () => {
                       setActiveView("workspace");
                     }}
                   >
+                    <FontAwesomeIcon icon={faFolder} style={{marginRight: "20px"}} />
                     {workspace.name}
                   </li>
                 ))}
