@@ -8,7 +8,8 @@ import {
   faChevronRight,
   faPlus, faFolder,
   faInbox,
-  faListCheck
+  faListCheck,
+  faBriefcase
 } from "@fortawesome/free-solid-svg-icons";
 import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/createworkspaceform/CreateWorkSpaceForm";
 import "./Dashboard.css";
@@ -64,6 +65,7 @@ const Dashboard = () => {
             Daily Tasks
           </li>
           <li className="nav-item" onClick={handleWorkspaceToggle}>
+            <FontAwesomeIcon icon={faBriefcase} style={{marginRight: "10px"}} />
             Workspace
             <FontAwesomeIcon
               icon={isWorkspaceOpen ? faChevronDown : faChevronRight}
