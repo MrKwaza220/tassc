@@ -38,7 +38,7 @@
     cursor: pointer;
     background-color: #1d1d1d;
     border-radius: 4px;
-    text-align: center;
+    text-align: start;
 }
 
 .sidebar .nav-item:hover {
