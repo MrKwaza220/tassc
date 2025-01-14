@@ -6,10 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronRight,
-  faPlus, faFolder,
+  faPlus,
+  faFolder,
   faInbox,
   faListCheck,
-  faBriefcase
+  faBriefcase,
+  faEllipsis,
 } from "@fortawesome/free-solid-svg-icons";
 import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/createworkspaceform/CreateWorkSpaceForm";
 import "./Dashboard.css";
@@ -20,17 +22,38 @@ const Dashboard = () => {
   const [workspaces, setWorkspaces] = useState([]);
   const [activeWorkspace, setActiveWorkspace] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
 
   const handleWorkspaceToggle = () => {
     setIsWorkspaceOpen(!isWorkspaceOpen);
   };
 
   const handleCreateWorkspace = (workspace) => {
-    const newWorkspace = { id: Date.now(), ...workspace };
+    const newWorkspace = { id: Date.now(), ...workspace, tasks: [] };
     setWorkspaces([...workspaces, newWorkspace]);
     setActiveWorkspace(newWorkspace);
     setActiveView("Workspace");
     setIsModalOpen(false);
+  };
+
+  const handleEditWorkspace = (workspaceId, updatedDetails) => {
+    const updatedWorkspaces = workspaces.map((workspace) =>
+      workspace.id === workspaceId
+        ? { ...workspace, ...updatedDetails }
+        : workspace
+    );
+    setWorkspaces(updatedWorkspaces);
+  };
+
+  const handleDeleteWorkspace = (workspaceId) => {
+    const updatedWorkspaces = workspaces.filter(
+      (workspace) => workspace.id !== workspaceId
+    );
+    setWorkspaces(updatedWorkspaces);
+    if (activeWorkspace?.id === workspaceId) {
+      setActiveWorkspace(null);
+      setActiveView("inbox");
+    }
   };
 
   const renderContent = () => {
@@ -56,20 +79,25 @@ const Dashboard = () => {
         <h2 className="sidebar-title">Dashboard</h2>
         <ul className="nav-list">
           <li className="nav-item" onClick={() => setActiveView("inbox")}>
-          <FontAwesomeIcon icon={faInbox} style={{marginRight: "10px"}} />
+            <FontAwesomeIcon icon={faInbox} style={{ marginRight: "10px" }} />
             Inbox
           </li>
           <li className="nav-item" onClick={() => setActiveView("DailyTask")}>
-          <FontAwesomeIcon icon={faListCheck} style={{marginRight: "10px"}} />
-
+            <FontAwesomeIcon
+              icon={faListCheck}
+              style={{ marginRight: "10px" }}
+            />
             Daily Tasks
           </li>
           <li className="nav-item" onClick={handleWorkspaceToggle}>
-            <FontAwesomeIcon icon={faBriefcase} style={{marginRight: "10px"}} />
+            <FontAwesomeIcon
+              icon={faBriefcase}
+              style={{ marginRight: "10px" }}
+            />
             Workspace
             <FontAwesomeIcon
               icon={isWorkspaceOpen ? faChevronDown : faChevronRight}
-              style={{ marginLeft: "8px", fontSize: "12px" }}
+              style={{ marginLeft: "40px", fontSize: "12px" }}
             />
           </li>
 
@@ -84,11 +112,52 @@ const Dashboard = () => {
                     }`}
                     onClick={() => {
                       setActiveWorkspace(workspace);
-                      setActiveView("workspace");
+                      setActiveView("Workspace");
                     }}
                   >
-                    <FontAwesomeIcon icon={faFolder} style={{marginRight: "10px"}} />
+                    <FontAwesomeIcon
+                      icon={faFolder}
+                      style={{ marginRight: "10px" }}
+                    />
                     {workspace.name}
+                    <div
+                      className="workspace-actions"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setWorkspaceOptionsVisible(
+                          workspaceOptionsVisible === workspace.id
+                            ? null
+                            : workspace.id
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faEllipsis} style={{ textAlign: "end" }}
+                      />
+                      {workspaceOptionsVisible === workspace.id && (
+                        <div className="workspace-menu">
+                          <button
+                            onClick={() => {
+                              const newName = prompt(
+                                "Edit workspace name:",
+                                workspace.name
+                              );
+                              if (newName) {
+                                handleEditWorkspace(workspace.id, {
+                                  name: newName,
+                                });
+                              }
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteWorkspace(workspace.id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ul>
