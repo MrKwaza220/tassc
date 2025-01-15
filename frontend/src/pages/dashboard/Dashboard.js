@@ -131,7 +131,7 @@ const Dashboard = () => {
                         );
                       }}
                     >
-                      <FontAwesomeIcon icon={faEllipsis} style={{ textAlign: "end" }}
+                      <FontAwesomeIcon icon={faEllipsis} 
                       />
                       {workspaceOptionsVisible === workspace.id && (
                         <div className="workspace-menu">
