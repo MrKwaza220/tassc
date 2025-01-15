@@ -104,57 +104,67 @@ const Dashboard = () => {
           {isWorkspaceOpen && (
             <>
               <ul className="created-workspace">
-  {workspaces.map((workspace) => (
-    <li
-      key={workspace.id}
-      className={`nav-item ${
-        activeWorkspace?.id === workspace.id ? "active" : ""
-      }`}
-      onClick={() => {
-        setActiveWorkspace(workspace);
-        setActiveView("Workspace");
-      }}
-    >
-      {/* Workspace name and icon */}
-      <div>
-        <FontAwesomeIcon icon={faFolder} style={{ marginRight: "10px" }} />
-        {workspace.name}
-      </div>
+                {workspaces.map((workspace) => (
+                  <li
+                    key={workspace.id}
+                    className={`nav-item ${
+                      activeWorkspace?.id === workspace.id ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      setActiveWorkspace(workspace);
+                      setActiveView("Workspace");
+                    }}
+                  >
+                    {/* Workspace name and icon */}
+                    <div>
+                      <FontAwesomeIcon
+                        icon={faFolder}
+                        style={{ marginRight: "10px" }}
+                      />
+                      {workspace.name}
+                    </div>
 
-      {/* Ellipsis icon and dropdown menu */}
-      <div
-        className="workspace-actions"
-        onClick={(e) => {
-          e.stopPropagation(); // Prevent triggering the workspace selection
-          setWorkspaceOptionsVisible(
-            workspaceOptionsVisible === workspace.id ? null : workspace.id
-          );
-        }}
-      >
-        <FontAwesomeIcon icon={faEllipsis} />
-        {workspaceOptionsVisible === workspace.id && (
-          <div className="workspace-menu">
-            <button
-              onClick={() => {
-                const newName = prompt("Edit workspace name:", workspace.name);
-                if (newName) {
-                  handleEditWorkspace(workspace.id, {
-                    name: newName,
-                  });
-                }
-              }}
-            >
-              Edit
-            </button>
-            <button onClick={() => handleDeleteWorkspace(workspace.id)}>
-              Delete
-            </button>
-          </div>
-        )}
-      </div>
-    </li>
-  ))}
-</ul>
+                    {/* Ellipsis icon and dropdown menu */}
+                    <div
+                      className="workspace-actions"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent triggering the workspace selection
+                        setWorkspaceOptionsVisible(
+                          workspaceOptionsVisible === workspace.id
+                            ? null
+                            : workspace.id
+                        );
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faEllipsis} />
+                      {workspaceOptionsVisible === workspace.id && (
+                        <div className="workspace-menu">
+                          <button
+                            onClick={() => {
+                              const newName = prompt(
+                                "Edit workspace name:",
+                                workspace.name
+                              );
+                              if (newName) {
+                                handleEditWorkspace(workspace.id, {
+                                  name: newName,
+                                });
+                              }
+                            }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteWorkspace(workspace.id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ul>
 
               <button
                 style={{
