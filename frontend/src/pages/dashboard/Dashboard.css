@@ -54,11 +54,23 @@
 .content h1 {
     margin-bottom: 10px;
 }
-
-.workspace-menu {
+.workspace-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .workspace-actions {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .workspace-menu {
     position: absolute;
-    background: #1d1d1d;
-    border: 1px solid #1d1d1d;
+    top: 20px;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 5px;
     display: flex;
@@ -76,6 +88,7 @@
   }
   
   .workspace-menu button:hover {
-    background-color: #5e5e5e;
+    background-color: #f0f0f0;
   }
+  
   
