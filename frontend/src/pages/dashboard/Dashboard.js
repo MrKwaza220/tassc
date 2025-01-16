@@ -2,18 +2,15 @@ import React, { useState } from "react";
 import Inbox from "../../sidenavcomponents/inbox/Inbox";
 import DailyTask from "../../sidenavcomponents/dailytask/DailyTask";
 import Workspace from "../../sidenavcomponents/workspace/Workspace";
+import CreateWorkSpaceButton from "../../sidenavcomponents/workspace/components/createworkspacebutton/CreateWorkSpaceButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronRight,
-  faPlus,
-  faFolder,
   faInbox,
   faListCheck,
   faBriefcase,
-  faEllipsis,
 } from "@fortawesome/free-solid-svg-icons";
-import CreateWorkSpaceForm from "../../sidenavcomponents/workspace/components/createworkspaceform/CreateWorkSpaceForm";
 import "./Dashboard.css";
 
 const Dashboard = () => {
@@ -21,39 +18,9 @@ const Dashboard = () => {
   const [isWorkspaceOpen, setIsWorkspaceOpen] = useState(false);
   const [workspaces, setWorkspaces] = useState([]);
   const [activeWorkspace, setActiveWorkspace] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
 
   const handleWorkspaceToggle = () => {
     setIsWorkspaceOpen(!isWorkspaceOpen);
-  };
-
-  const handleCreateWorkspace = (workspace) => {
-    const newWorkspace = { id: Date.now(), ...workspace, tasks: [] };
-    setWorkspaces([...workspaces, newWorkspace]);
-    setActiveWorkspace(newWorkspace);
-    setActiveView("Workspace");
-    setIsModalOpen(false);
-  };
-
-  const handleEditWorkspace = (workspaceId, updatedDetails) => {
-    const updatedWorkspaces = workspaces.map((workspace) =>
-      workspace.id === workspaceId
-        ? { ...workspace, ...updatedDetails }
-        : workspace
-    );
-    setWorkspaces(updatedWorkspaces);
-  };
-
-  const handleDeleteWorkspace = (workspaceId) => {
-    const updatedWorkspaces = workspaces.filter(
-      (workspace) => workspace.id !== workspaceId
-    );
-    setWorkspaces(updatedWorkspaces);
-    if (activeWorkspace?.id === workspaceId) {
-      setActiveWorkspace(null);
-      setActiveView("inbox");
-    }
   };
 
   const renderContent = () => {
@@ -100,8 +67,16 @@ const Dashboard = () => {
               style={{ marginLeft: "40px", fontSize: "12px" }}
             />
           </li>
-            <CreateWorkSpaceForm />
         </ul>
+
+        {/* CreateWorkSpaceButton */}
+        <CreateWorkSpaceButton
+          isWorkspaceOpen={isWorkspaceOpen}
+          workspaces={workspaces}
+          setWorkspaces={setWorkspaces}
+          setActiveWorkspace={setActiveWorkspace}
+          setActiveView={setActiveView}
+        />
       </aside>
       <main className="content">{renderContent()}</main>
     </div>
