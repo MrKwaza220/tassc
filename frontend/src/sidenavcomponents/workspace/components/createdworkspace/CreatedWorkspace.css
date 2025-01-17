@@ -47,4 +47,10 @@
   .created-workspaces button{
     background-color: #1d1d1d;
     padding: 15px 15px;
+    border: none;
+    transition: 0.5s;
+  }
+
+  .created-workspaces button:hover{
+    background: #444;
   }
