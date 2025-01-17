@@ -12,6 +12,7 @@ import {
   faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Dashboard.css";
+import CreatedWorkSpace from "../../sidenavcomponents/workspace/components/createdworkspace/CreatedWorkspace";
 
 const Dashboard = () => {
   const [activeView, setActiveView] = useState("inbox");
@@ -69,7 +70,7 @@ const Dashboard = () => {
           </li>
         </ul>
 
-        <CreateWorkSpaceButton
+        <CreatedWorkSpace
           isWorkspaceOpen={isWorkspaceOpen}
           workspaces={workspaces}
           setWorkspaces={setWorkspaces}
