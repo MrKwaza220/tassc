@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Inbox from "../../sidenavcomponents/inbox/Inbox";
 import DailyTask from "../../sidenavcomponents/dailytask/DailyTask";
 import Workspace from "../../sidenavcomponents/workspace/Workspace";
-import CreateWorkSpaceButton from "../../sidenavcomponents/workspace/components/createworkspacebutton/CreateWorkSpaceButton";
+import CreateWorkSpaceButton from "../../sidenavcomponents/workspace/components/createdworkspace/CreatedWorkspace";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
@@ -69,7 +69,6 @@ const Dashboard = () => {
           </li>
         </ul>
 
-        {/* CreateWorkSpaceButton */}
         <CreateWorkSpaceButton
           isWorkspaceOpen={isWorkspaceOpen}
           workspaces={workspaces}
