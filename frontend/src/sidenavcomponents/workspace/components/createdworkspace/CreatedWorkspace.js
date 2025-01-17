@@ -39,7 +39,7 @@ const CreatedWorkSpace = ({
   };
 
   return (
-    <div className="create-workspace-btn">
+    <div className="created-workspaces">
       {isWorkspaceOpen && (
         <>
           <ul className="created-workspace">
