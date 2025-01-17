@@ -29,10 +29,10 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
         className="modal-content"
         onClick={(e) => e.stopPropagation()}
       >   
-      <button type="button" className="btn-cancel" onClick={onClose}>
+      <div type="button" className="btn-cancel" onClick={onClose}>
       
       <FontAwesomeIcon icon={faCircleXmark} />
-    </button>
+    </div>
          
         <h2>Create Workspace</h2>
         <form onSubmit={handleSubmit}>
