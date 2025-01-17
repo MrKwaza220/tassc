@@ -48,7 +48,16 @@ const Inbox = () => {
   };
 
   return (
+
+    <div className="inbox-page">
+
+     <div className="workspace">
+            <h1>Workspace</h1>
+            <p>Welcome to your workspace!</p>
+        </div>
+
     <div className="inbox-container">
+      
       <div className="chat-section">
         <div className="chat-header">
           <ul className="chat-list">
@@ -96,6 +105,7 @@ const Inbox = () => {
         </div>
         <div className="chat-content">{renderContent()}</div>
       </div>
+    </div>
     </div>
   );
 };
