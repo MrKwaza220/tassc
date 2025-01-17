@@ -46,6 +46,7 @@
   
   .created-workspaces button{
     background-color: #1d1d1d;
+    margin-left: 10px;
     padding: 15px 15px;
     border: none;
     transition: 0.5s;
