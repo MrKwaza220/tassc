@@ -59,20 +59,25 @@
   justify-content: space-between;
 }
 
-.btn-submit {
+.form-actions .btn-submit {
   background-color: #28a745;
   color: #fff;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: .5s;
+}
+
+.form-actions .btn-submit:hover{
+  background-color: #28a745;
+  transform: scale(1.05);
 }
 
 .btn-cancel {
   position: absolute; 
-  top: -20px; 
-  right: -55px; 
-  background: transparent;
+  top: -10px; 
+  right: -5px; 
   color: #28a745;
   border: none;
   font-size: 1.7rem; 
