@@ -22,6 +22,7 @@ const Dashboard = () => {
 
   const handleWorkspaceToggle = () => {
     setIsWorkspaceOpen(!isWorkspaceOpen);
+    setActiveView("Workspace");
   };
 
   const renderContent = () => {
@@ -31,11 +32,7 @@ const Dashboard = () => {
       case "DailyTask":
         return <DailyTask />;
       case "Workspace":
-        return activeWorkspace ? (
-          <Workspace workspace={activeWorkspace} />
-        ) : (
-          <p>Select a workspace to view its details.</p>
-        );
+        return <Workspace />
       default:
         return <Inbox />;
     }
