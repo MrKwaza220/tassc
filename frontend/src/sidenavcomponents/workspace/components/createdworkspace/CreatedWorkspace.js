@@ -99,7 +99,7 @@ const CreatedWorkSpace = ({
               </li>
             ))}
           </ul>
-
+       
           <button
             className="create-space-btn"
             onClick={() => setIsModalOpen(true)}
