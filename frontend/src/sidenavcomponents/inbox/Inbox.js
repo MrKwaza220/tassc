@@ -53,7 +53,7 @@ const Inbox = () => {
 
      <div className="workspace">
             <h1>Workspace</h1>
-            <p>Welcome to your workspace!</p>
+            <p>Welcome to your Inbox!</p>
         </div>
 
     <div className="inbox-container">
