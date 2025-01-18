@@ -29,11 +29,11 @@
   .display-assigned-tasks,
   .workspace-performance {
     
-    border: 1px solid #ddd; /* Light border */
+    border: 1px solid #ddd; 
     border-radius: 8px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
   }
@@ -42,7 +42,7 @@
   .display-assigned-tasks:hover,
   .workspace-performance:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
   }
   
   .create-workspace-button p,
@@ -55,7 +55,7 @@
   
   @media (max-width: 768px) {
     .workspace-container {
-      grid-template-columns: 1fr; /* Single column for smaller screens */
+      grid-template-columns: 1fr; 
       gap: 15px;
     }
   }
