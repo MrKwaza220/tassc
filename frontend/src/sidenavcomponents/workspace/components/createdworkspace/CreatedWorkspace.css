@@ -32,6 +32,7 @@
 .created-workspaces .workspace-menu button {
   border: none;
   margin: 5px 0 0;
+  font-size: 12px;
   padding: 10px 15px;
   cursor: pointer;
   text-align: center;
