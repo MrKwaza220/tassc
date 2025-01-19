@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faFolder, faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faFolder,
+  faEllipsis,
+} from "@fortawesome/free-solid-svg-icons";
 import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
 import "./CreatedWorkspace.css";
+import ConfirmDelete from "../confirmdelete/ConfirmDelete";
 
 const CreatedWorkSpace = ({
   isWorkspaceOpen,
@@ -14,6 +19,7 @@ const CreatedWorkSpace = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
+  const [deteleWorkspaceId, setDeleteWorkspaceId] = useState(null);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -47,15 +53,11 @@ const CreatedWorkSpace = ({
   };
 
   const handleDeleteWorkspace = (workspaceId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this workspace?"
+    const updatedWorkspaces = workspaces.filter(
+      (workspace) => workspace.id !== workspaceId
     );
-    if (confirmDelete) {
-      const updatedWorkspaces = workspaces.filter(
-        (workspace) => workspace.id !== workspaceId
-      );
-      setWorkspaces(updatedWorkspaces);
-    }
+    setWorkspaces(updatedWorkspaces);
+    setEditingWorkspaceId(null);
   };
 
   return (
@@ -70,12 +72,16 @@ const CreatedWorkSpace = ({
                     type="text"
                     defaultValue={workspace.name}
                     onBlur={(e) => {
-                      handleEditWorkspace(workspace.id, { name: e.target.value });
+                      handleEditWorkspace(workspace.id, {
+                        name: e.target.value,
+                      });
                       setEditingWorkspaceId(null);
                     }}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
-                        handleEditWorkspace(workspace.id, { name: e.target.value });
+                        handleEditWorkspace(workspace.id, {
+                          name: e.target.value,
+                        });
                         setEditingWorkspaceId(null);
                       }
                     }}
@@ -110,6 +116,8 @@ const CreatedWorkSpace = ({
                   <FontAwesomeIcon icon={faEllipsis} />
                   {workspaceOptionsVisible === workspace.id && (
                     <div ref={menuRef} className="workspace-menu">
+                      <button>Add Tasks</button>
+                      <button>Add Member</button>
                       <button
                         onClick={() => {
                           setEditingWorkspaceId(workspace.id);
@@ -118,9 +126,12 @@ const CreatedWorkSpace = ({
                       >
                         Rename
                       </button>
-                      <button>Add Task</button>
+
                       <button
-                        onClick={() => handleDeleteWorkspace(workspace.id)}
+                        onClick={() => {
+                          handleDeleteWorkspace(workspace.id);
+                          setWorkspaceOptionsVisible(null);
+                        }}
                       >
                         Delete
                       </button>
@@ -144,6 +155,13 @@ const CreatedWorkSpace = ({
             onClose={() => setIsModalOpen(false)}
             onSubmit={handleCreateWorkspace}
           />
+
+          <ConfirmDelete 
+            isOpen={!!deteleWorkspaceId}
+            onClose={() => setDeleteWorkspaceId(null)}
+            onConfirm={() => handleCreateWorkspace(setDeleteWorkspaceId)}
+            message="Are sure you want to delete this workspace?"
+            />
         </>
       )}
     </div>
