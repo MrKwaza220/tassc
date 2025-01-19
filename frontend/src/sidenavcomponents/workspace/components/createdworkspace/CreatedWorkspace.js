@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faFolder, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
@@ -14,6 +14,20 @@ const CreatedWorkSpace = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setWorkspaceOptionsVisible(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, tasks: [] };
@@ -95,7 +109,7 @@ const CreatedWorkSpace = ({
                 >
                   <FontAwesomeIcon icon={faEllipsis} />
                   {workspaceOptionsVisible === workspace.id && (
-                    <div className="workspace-menu">
+                    <div ref={menuRef} className="workspace-menu">
                       <button
                         onClick={() => {
                           setEditingWorkspaceId(workspace.id);
