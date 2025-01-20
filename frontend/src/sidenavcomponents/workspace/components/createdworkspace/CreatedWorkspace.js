@@ -19,7 +19,7 @@ const CreatedWorkSpace = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
-  const [deteleWorkspaceId, setDeleteWorkspaceId] = useState(null);
+  const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -52,12 +52,12 @@ const CreatedWorkSpace = ({
     setWorkspaces(updatedWorkspaces);
   };
 
-  const handleDeleteWorkspace = (workspaceId) => {
+  const handleDeleteWorkspace = () => {
     const updatedWorkspaces = workspaces.filter(
-      (workspace) => workspace.id !== workspaceId
+      (workspace) => workspace.id !== deleteWorkspaceId
     );
     setWorkspaces(updatedWorkspaces);
-    setEditingWorkspaceId(null);
+    setDeleteWorkspaceId(null); // Close modal after deletion
   };
 
   return (
@@ -129,7 +129,7 @@ const CreatedWorkSpace = ({
 
                       <button
                         onClick={() => {
-                          handleDeleteWorkspace(workspace.id);
+                          setDeleteWorkspaceId(workspace.id);
                           setWorkspaceOptionsVisible(null);
                         }}
                       >
@@ -156,12 +156,12 @@ const CreatedWorkSpace = ({
             onSubmit={handleCreateWorkspace}
           />
 
-          <ConfirmDelete 
-            isOpen={!!deteleWorkspaceId}
+          <ConfirmDelete
+            isOpen={!!deleteWorkspaceId}
             onClose={() => setDeleteWorkspaceId(null)}
-            onConfirm={() => handleCreateWorkspace(setDeleteWorkspaceId)}
-            message="Are sure you want to delete this workspace?"
-            />
+            onConfirm={handleDeleteWorkspace}
+            message="Are you sure you want to delete this workspace?"
+          />
         </>
       )}
     </div>
