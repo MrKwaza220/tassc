@@ -57,7 +57,7 @@ const CreatedWorkSpace = ({
       (workspace) => workspace.id !== deleteWorkspaceId
     );
     setWorkspaces(updatedWorkspaces);
-    setDeleteWorkspaceId(null); // Close modal after deletion
+    setDeleteWorkspaceId(null); 
   };
 
   return (
