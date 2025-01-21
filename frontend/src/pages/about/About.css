@@ -1,12 +1,12 @@
 .about-page {
-    background-color: #f9f9f9; /* Light background for readability */
+    background-color: #f9f9f9;
     font-family: 'Arial', sans-serif;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #333; /* Dark text for good contrast */
+    color: #333;
     height: 100vh;
 }
 
@@ -14,20 +14,20 @@
     max-width: 800px;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     padding: 30px;
 }
 
 .about-container h1 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #007ACC; /* Highlight color */
+    color: #007ACC; 
 }
 
 .about-container h2 {
     font-size: 28px;
     margin-top: 30px;
-    color: #005A9E; /* Secondary highlight color */
+    color: #005A9E; 
 }
 
 .about-container p {
