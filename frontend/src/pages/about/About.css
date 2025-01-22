@@ -47,13 +47,13 @@
 .about-container h1 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #007ACC; 
+    color: #28a745; 
 }
 
 .about-container h2 {
     font-size: 28px;
     margin-top: 30px;
-    color: #005A9E; 
+    color: #28a745; 
 }
 
 .about-container p {
@@ -64,9 +64,14 @@
 }
 
 .about-container .about-intro {
-    font-weight: bold;
+    color: #ddd;
     font-size: 18px;
     margin-bottom: 30px; 
+}
+
+.about-container .about-text p{
+    color: #ddd;
+    
 }
 
 
