@@ -5,7 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: left; /* Align text to the left */
+    text-align: left; 
     color: #333;
     height: 100vh;
 }
@@ -27,6 +27,11 @@
 
 .about-text {
     flex: 2;
+    
+}
+
+.about-text p{
+    font-size: 10px;
 }
 
 .about-image {
