@@ -15,7 +15,7 @@ const About = () => {
           we aim to deliver tools that help individuals and teams thrive.
         </p>
 
-        {/* <h2>Our Mission</h2>
+        <h2>Our Mission</h2>
         <p>
           At Tassc, our mission is to empower people to organize their tasks
           effectively and achieve their goals with ease. We believe in
@@ -33,7 +33,7 @@ const About = () => {
         <p>
           Be a part of our journey! Explore our platform, provide feedback, or
           reach out to collaborate. Together, let’s achieve more!
-        </p> */}
+        </p>
       </div>
 
       <div className="about-image">
