@@ -30,10 +30,6 @@
     
 }
 
-.about-text p{
-    font-size: 10px;
-}
-
 .about-image {
     flex: 1; 
     display: flex;
@@ -45,7 +41,7 @@
     width: 100%;
     border-radius: 10px;
     max-height: 400px;
-    object-fit: cover; /* Maintain aspect ratio */
+    object-fit: cover; 
 }
 
 .about-container h1 {
@@ -69,8 +65,8 @@
 
 .about-container .about-intro {
     font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 30px;
+    font-size: 18px;
+    margin-bottom: 30px; 
 }
 
 
