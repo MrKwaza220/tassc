@@ -117,6 +117,7 @@ const CreatedWorkSpace = ({
                   {workspaceOptionsVisible === workspace.id && (
                     <div ref={menuRef} className="workspace-menu">
                       <button>Add Tasks</button>
+                      <button>Create Folder</button>
                       <button>Add Member</button>
                       <button
                         onClick={() => {
