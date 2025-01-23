@@ -128,7 +128,7 @@ const CreatedWorkSpace = ({
                   {workspaceOptionsVisible === workspace.id && (
                     <div ref={menuRef} className="workspace-menu">
                       <button>Add Tasks</button>
-                      <button onClick={() => setCreateFolder(true)}>
+                      <button onClick={() => setCreateFolder(false)}>
                         Create Folder
                       </button>
                       <button>Add Member</button>
@@ -170,11 +170,7 @@ const CreatedWorkSpace = ({
             onSubmit={handleCreateWorkspace}
           />
 
-          <CreateFolder
-           isOpen={CreateFolder}
-            onClose={() => setCreateFolder(false)}
-            onSubmit={handleCreateFolder}
-          />
+          
 
           <ConfirmDelete
             isOpen={!!deleteWorkspaceId}
