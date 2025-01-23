@@ -21,19 +21,12 @@ const About = () => {
           effectively and achieve their goals with ease. We believe in
           creating solutions that inspire and improve everyday workflows.
         </p>
-
-        <h2>Our Team</h2>
-        <p>
-          We are a team of dedicated professionals with a shared vision of
-          building tools that matter. Our diverse background enables us to
-          innovate and deliver outstanding experiences.
-        </p>
-
+        
         <h2>Join Us</h2>
         <p>
           Be a part of our journey! Explore our platform, provide feedback, or
           reach out to collaborate. Together, let’s achieve more!
-        </p>
+        </p> 
       </div>
 
       <div className="about-image">
