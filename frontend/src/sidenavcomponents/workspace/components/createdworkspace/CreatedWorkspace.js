@@ -8,6 +8,7 @@ import {
 import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
 import "./CreatedWorkspace.css";
 import ConfirmDelete from "../confirmdelete/ConfirmDelete";
+import CreateFolder from "../createfolder/CreateFolder";
 
 const CreatedWorkSpace = ({
   isWorkspaceOpen,
@@ -20,6 +21,7 @@ const CreatedWorkSpace = ({
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
+  const [createFolder, setCreateFolder] = useState(null);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -34,6 +36,7 @@ const CreatedWorkSpace = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
 
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, tasks: [] };
@@ -57,8 +60,16 @@ const CreatedWorkSpace = ({
       (workspace) => workspace.id !== deleteWorkspaceId
     );
     setWorkspaces(updatedWorkspaces);
-    setDeleteWorkspaceId(null); 
+    setDeleteWorkspaceId(null);
   };
+
+  const handleCreateFolder = (folder) => {
+    const newFolder = { id: Date.now(), ...folder, tasks: [] };
+    setWorkspaces([...workspaces, newFolder]);
+    setActiveWorkspace(newFolder);
+    setActiveView("Workspace");
+    setCreateFolder(false);
+  }
 
   return (
     <div className="created-workspaces">
@@ -117,7 +128,9 @@ const CreatedWorkSpace = ({
                   {workspaceOptionsVisible === workspace.id && (
                     <div ref={menuRef} className="workspace-menu">
                       <button>Add Tasks</button>
-                      <button>Create Folder</button>
+                      <button onClick={() => setCreateFolder(true)}>
+                        Create Folder
+                      </button>
                       <button>Add Member</button>
                       <button
                         onClick={() => {
@@ -155,6 +168,12 @@ const CreatedWorkSpace = ({
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onSubmit={handleCreateWorkspace}
+          />
+
+          <CreateFolder
+           isOpen={CreateFolder}
+            onClose={() => setCreateFolder(false)}
+            onSubmit={handleCreateFolder}
           />
 
           <ConfirmDelete
