@@ -169,9 +169,11 @@ const CreatedWorkSpace = ({
             onClose={() => setIsModalOpen(false)}
             onSubmit={handleCreateWorkspace}
           />
-
-          
-
+          <CreateFolder
+           isOpen={CreateFolder}
+            onClose={() => setCreateFolder(false)}
+            onSubmit={handleCreateFolder}
+          />
           <ConfirmDelete
             isOpen={!!deleteWorkspaceId}
             onClose={() => setDeleteWorkspaceId(null)}
