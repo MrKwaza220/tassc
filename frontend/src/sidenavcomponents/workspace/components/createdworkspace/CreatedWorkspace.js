@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus,
-  faFolder,
-  faEllipsis,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faFolder, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
-import "./CreatedWorkspace.css";
 import ConfirmDelete from "../confirmdelete/ConfirmDelete";
 import CreateFolder from "../createfolder/CreateFolder";
+import "./CreatedWorkspace.css";
 
 const CreatedWorkSpace = ({
   isWorkspaceOpen,
@@ -21,7 +17,8 @@ const CreatedWorkSpace = ({
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
-  const [createFolder, setCreateFolder] = useState(null);
+  const [isFolderModalOpen, setIsFolderModalOpen] = useState(false);
+  const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] = useState(null);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -37,9 +34,8 @@ const CreatedWorkSpace = ({
     };
   }, []);
 
-
   const handleCreateWorkspace = (workspace) => {
-    const newWorkspace = { id: Date.now(), ...workspace, tasks: [] };
+    const newWorkspace = { id: Date.now(), ...workspace, folders: [], tasks: [] };
     setWorkspaces([...workspaces, newWorkspace]);
     setActiveWorkspace(newWorkspace);
     setActiveView("Workspace");
@@ -64,12 +60,15 @@ const CreatedWorkSpace = ({
   };
 
   const handleCreateFolder = (folder) => {
-    const newFolder = { id: Date.now(), ...folder, tasks: [] };
-    setWorkspaces([...workspaces, newFolder]);
-    setActiveWorkspace(newFolder);
-    setActiveView("Workspace");
-    setCreateFolder(false);
-  }
+    const updatedWorkspaces = workspaces.map((workspace) =>
+      workspace.id === activeWorkspaceForFolder
+        ? { ...workspace, folders: [...(workspace.folders || []), folder] }
+        : workspace
+    );
+    setWorkspaces(updatedWorkspaces);
+    setIsFolderModalOpen(false);
+    setActiveWorkspaceForFolder(null);
+  };
 
   return (
     <div className="created-workspaces">
@@ -128,7 +127,13 @@ const CreatedWorkSpace = ({
                   {workspaceOptionsVisible === workspace.id && (
                     <div ref={menuRef} className="workspace-menu">
                       <button>Add Tasks</button>
-                      <button onClick={() => setCreateFolder(false)}>
+                      <button
+                        onClick={() => {
+                          setIsFolderModalOpen(true);
+                          setActiveWorkspaceForFolder(workspace.id);
+                          setWorkspaceOptionsVisible(null);
+                        }}
+                      >
                         Create Folder
                       </button>
                       <button>Add Member</button>
@@ -140,7 +145,6 @@ const CreatedWorkSpace = ({
                       >
                         Rename
                       </button>
-
                       <button
                         onClick={() => {
                           setDeleteWorkspaceId(workspace.id);
@@ -170,8 +174,8 @@ const CreatedWorkSpace = ({
             onSubmit={handleCreateWorkspace}
           />
           <CreateFolder
-           isOpen={CreateFolder}
-            onClose={() => setCreateFolder(false)}
+            isOpen={isFolderModalOpen}
+            onClose={() => setIsFolderModalOpen(false)}
             onSubmit={handleCreateFolder}
           />
           <ConfirmDelete
