@@ -1,68 +1,93 @@
-.created-workspaces {
-  margin: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.nav-item {
-  margin-bottom: 10px;
-  list-style: none;
-}
-
-.workspace-header {
+/* General Styles */
+.created-workspace .nav-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  margin: 10px 0;
   cursor: pointer;
-  padding: 5px;
-  background: #f0f0f0;
+  background-color: #1d1d1d;
+  border-radius: 4px;
+  text-align: start;
+  transition: background-color 0.3s;
+}
+
+.created-workspace .nav-item:hover {
+  background-color: #2c3e50;
+}
+
+/* Workspace Actions */
+.workspace-actions {
+  margin-left: auto;
+  position: relative;
+}
+
+.workspace-menu {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background: #1d1d1d;
+  border: 1px solid #444;
   border-radius: 5px;
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-.workspace-header:hover {
-  background: #e0e0e0;
-}
-
-.expand-icon {
-  margin-right: 10px;
-  transition: transform 0.3s ease;
-}
-
-.expand-icon.expanded {
-  transform: rotate(180deg);
-}
-
-.workspace-content {
-  margin-left: 20px;
-  margin-top: 10px;
-}
-
-.folder-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.folder-item {
-  padding: 5px;
-  background: #f9f9f9;
-  border: 1px solid #ccc;
-  margin-bottom: 5px;
-  border-radius: 3px;
-}
-
-.add-folder-btn {
-  margin-top: 10px;
-  padding: 5px 10px;
-  background: #007acc;
-  color: #fff;
+.workspace-menu button {
+  background: transparent;
   border: none;
-  border-radius: 3px;
+  padding: 10px 15px;
+  font-size: 12px;
+  text-align: left;
+  color: #ecf0f1;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.add-folder-btn:hover {
-  background: #005fa3;
+.workspace-menu button:hover {
+  background-color: #2c3e50;
 }
 
+/* Create Button */
+.created-workspaces button {
+  background-color: #1d1d1d;
+  margin-top: -5px;
+  padding: 15px 15px;
+  border: none;
+  color: #ecf0f1;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s, transform 0.2s;
+}
+
+.created-workspaces button:hover {
+  background: #444;
+  transform: translateY(-2px);
+}
+
+/* Input Fields */
+.created-workspace input {
+  border: 1px solid #444;
+  background-color: #1d1d1d;
+  color: #ecf0f1;
+  padding: 8px;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.created-workspace input:focus {
+  outline: none;
+  border-color: #4caf50;
+  background-color: #2c3e50;
+}
+
+/* Folder List */
 .folder-list {
   margin-top: 10px;
   padding-left: 20px;
@@ -72,10 +97,12 @@
 .folder-item {
   margin: 5px 0;
   font-size: 14px;
-  color: #666;
+  color: #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.folder-item.empty {
-  font-style: italic;
-  color: #999;
+.folder-item:hover {
+  color: #fff;
 }
