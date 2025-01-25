@@ -116,13 +116,13 @@ const CreatedWorkSpace = ({
                 {/* Render folders under workspace */}
                 {workspace.folders && workspace.folders.length > 0 && (
                   <ul className="folder-list">
-                  {workspace.folders.map((folder) => (
-                    <li key={folder.id} className="folder-item">
-                      <FontAwesomeIcon icon={faFolderPlus} style={{ marginRight: "8px" }} />
-                      {folder.name}
-                    </li>
-                  ))}
-                </ul>
+                    {workspace.folders.map((folder) => (
+                      <li key={folder.id} className="folder-item">
+                        <FontAwesomeIcon icon={faFolderPlus} style={{ marginRight: "8px" }} />
+                        {folder.name} {/* Fixed rendering */}
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </li>
             ))}
