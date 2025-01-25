@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faFolder, faEllipsis, faFolderPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faFolder } from "@fortawesome/free-solid-svg-icons";
+import DropDownWorkspace from "../dropdownworkspace/DropDownWorkspace";
 import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
 import ConfirmDelete from "../confirmdelete/ConfirmDelete";
 import CreateFolder from "../createfolder/CreateFolder";
@@ -14,30 +15,36 @@ const CreatedWorkSpace = ({
   setActiveView,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFolderModalOpen, setIsFolderModalOpen] = useState(false);
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
-  const [isFolderModalOpen, setIsFolderModalOpen] = useState(false);
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] = useState(null);
-  const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setWorkspaceOptionsVisible(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, folders: [] };
     setWorkspaces([...workspaces, newWorkspace]);
     setIsModalOpen(false);
+  };
+
+  const handleCreateFolder = (folderName) => {
+    const updatedWorkspaces = workspaces.map((workspace) =>
+      workspace.id === activeWorkspaceForFolder
+        ? { ...workspace, folders: [...workspace.folders, { id: Date.now(), name: folderName }] }
+        : workspace
+    );
+    setWorkspaces(updatedWorkspaces);
+    setIsFolderModalOpen(false);
+    setActiveWorkspaceForFolder(null);
+  };
+
+  const handleRenameWorkspace = (workspaceId) => {
+    const workspaceName = prompt("Enter new workspace name:");
+    if (workspaceName) {
+      const updatedWorkspaces = workspaces.map((workspace) =>
+        workspace.id === workspaceId ? { ...workspace, name: workspaceName } : workspace
+      );
+      setWorkspaces(updatedWorkspaces);
+    }
   };
 
   const handleDeleteWorkspace = () => {
@@ -48,26 +55,6 @@ const CreatedWorkSpace = ({
     setDeleteWorkspaceId(null);
   };
 
-  const handleCreateFolder = (folder) => {
-    const updatedWorkspaces = workspaces.map((workspace) =>
-      workspace.id === activeWorkspaceForFolder
-        ? { ...workspace, folders: [...workspace.folders, folder] }
-        : workspace
-    );
-    setWorkspaces(updatedWorkspaces);
-    setIsFolderModalOpen(false);
-    setActiveWorkspaceForFolder(null);
-  };
-
-  const handleEditWorkspace = (workspaceId, updatedDetails) => {
-    const updatedWorkspaces = workspaces.map((workspace) =>
-      workspace.id === workspaceId
-        ? { ...workspace, ...updatedDetails }
-        : workspace
-    );
-    setWorkspaces(updatedWorkspaces);
-  };
-
   return (
     <div className="created-workspaces">
       {isWorkspaceOpen && (
@@ -75,86 +62,38 @@ const CreatedWorkSpace = ({
           <ul className="created-workspace">
             {workspaces.map((workspace) => (
               <li key={workspace.id} className="nav-item">
-                {editingWorkspaceId === workspace.id ? (
-                  <input
-                    type="text"
-                    defaultValue={workspace.name}
-                    onBlur={(e) => {
-                      handleEditWorkspace(workspace.id, { name: e.target.value });
-                      setEditingWorkspaceId(null); // Exit edit mode
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        handleEditWorkspace(workspace.id, { name: e.target.value });
-                        setEditingWorkspaceId(null); // Exit edit mode
-                      }
-                    }}
-                    autoFocus
-                  />
-                ) : (
-                  <div
-                    onClick={() => {
-                      setActiveWorkspace(workspace);
-                      setActiveView("Workspace");
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faFolder}
-                      style={{ marginRight: "10px" }}
-                    />
-                    {workspace.name}
-                  </div>
-                )}
-
                 <div
-                  className="workspace-actions"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setWorkspaceOptionsVisible(
-                      workspaceOptionsVisible === workspace.id
-                        ? null
-                        : workspace.id
-                    );
+                  className="workspace-name"
+                  onClick={() => {
+                    setActiveWorkspace(workspace);
+                    setActiveView("Workspace");
                   }}
                 >
-                  <FontAwesomeIcon icon={faEllipsis} />
-                  {workspaceOptionsVisible === workspace.id && (
-                    <div ref={menuRef} className="workspace-menu">
-                      <button
-                        onClick={() => {
-                          setIsFolderModalOpen(true);
-                          setActiveWorkspaceForFolder(workspace.id);
-                          setWorkspaceOptionsVisible(null);
-                        }}
-                      >
-                        Create Folder
-                      </button>
-                      <button
-                        onClick={() => {
-                          setWorkspaceOptionsVisible(null);
-                          setEditingWorkspaceId(workspace.id); // Enable rename mode
-                        }}
-                      >
-                        Rename
-                      </button>
-                      <button
-                        onClick={() => {
-                          setDeleteWorkspaceId(workspace.id);
-                          setWorkspaceOptionsVisible(null);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  )}
+                  <FontAwesomeIcon icon={faFolder} style={{ marginRight: "10px" }} />
+                  {workspace.name}
                 </div>
 
-                {/* Render folders under workspace */}
+                <DropDownWorkspace
+                  workspaceId={workspace.id}
+                  isVisible={workspaceOptionsVisible}
+                  onToggleVisibility={setWorkspaceOptionsVisible}
+                  onCreateFolder={(id) => {
+                    setActiveWorkspaceForFolder(id);
+                    setIsFolderModalOpen(true);
+                  }}
+                  onRename={handleRenameWorkspace}
+                  onDelete={(id) => {
+                    setDeleteWorkspaceId(id);
+                    setWorkspaceOptionsVisible(null);
+                  }}
+                />
+
+                {/* Render folders under each workspace */}
                 {workspace.folders && workspace.folders.length > 0 && (
                   <ul className="folder-list">
                     {workspace.folders.map((folder) => (
                       <li key={folder.id} className="folder-item">
-                        <FontAwesomeIcon icon={faFolderPlus} style={{ marginRight: "8px" }} />
+                        <FontAwesomeIcon icon={faFolder} style={{ marginRight: "8px" }} />
                         {folder.name}
                       </li>
                     ))}
@@ -164,10 +103,7 @@ const CreatedWorkSpace = ({
             ))}
           </ul>
 
-          <button
-            className="create-space-btn"
-            onClick={() => setIsModalOpen(true)}
-          >
+          <button className="create-space-btn" onClick={() => setIsModalOpen(true)}>
             Create Space
             <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
           </button>
@@ -177,13 +113,13 @@ const CreatedWorkSpace = ({
             onClose={() => setIsModalOpen(false)}
             onSubmit={handleCreateWorkspace}
           />
+
           <CreateFolder
             isOpen={isFolderModalOpen}
             onClose={() => setIsFolderModalOpen(false)}
-            onSubmit={(folderName) =>
-              handleCreateFolder({ id: Date.now(), name: folderName })
-            }
+            onSubmit={handleCreateFolder}
           />
+
           <ConfirmDelete
             isOpen={!!deleteWorkspaceId}
             onClose={() => setDeleteWorkspaceId(null)}
