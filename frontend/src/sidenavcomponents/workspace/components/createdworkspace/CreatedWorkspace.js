@@ -88,7 +88,7 @@ const CreatedWorkSpace = ({
                   }}
                 />
 
-                {/* Render folders under each workspace */}
+                
                 {workspace.folders && workspace.folders.length > 0 && (
                   <ul className="folder-list">
                     {workspace.folders.map((folder) => (
