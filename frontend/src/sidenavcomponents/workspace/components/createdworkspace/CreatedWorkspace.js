@@ -18,6 +18,7 @@ const CreatedWorkSpace = ({
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
   const [isFolderModalOpen, setIsFolderModalOpen] = useState(false);
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] = useState(null);
+  const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -58,6 +59,15 @@ const CreatedWorkSpace = ({
     setActiveWorkspaceForFolder(null);
   };
 
+  const handleEditWorkspace = (workspaceId, updatedDetails) => {
+    const updatedWorkspaces = workspaces.map((workspace) =>
+      workspace.id === workspaceId
+        ? { ...workspace, ...updatedDetails }
+        : workspace
+    );
+    setWorkspaces(updatedWorkspaces);
+  };
+
   return (
     <div className="created-workspaces">
       {isWorkspaceOpen && (
@@ -65,18 +75,36 @@ const CreatedWorkSpace = ({
           <ul className="created-workspace">
             {workspaces.map((workspace) => (
               <li key={workspace.id} className="nav-item">
-                <div
-                  onClick={() => {
-                    setActiveWorkspace(workspace);
-                    setActiveView("Workspace");
-                  }}
-                >
-                  <FontAwesomeIcon
-                    icon={faFolder}
-                    style={{ marginRight: "10px" }}
+                {editingWorkspaceId === workspace.id ? (
+                  <input
+                    type="text"
+                    defaultValue={workspace.name}
+                    onBlur={(e) => {
+                      handleEditWorkspace(workspace.id, { name: e.target.value });
+                      setEditingWorkspaceId(null); // Exit edit mode
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        handleEditWorkspace(workspace.id, { name: e.target.value });
+                        setEditingWorkspaceId(null); // Exit edit mode
+                      }
+                    }}
+                    autoFocus
                   />
-                  {workspace.name}
-                </div>
+                ) : (
+                  <div
+                    onClick={() => {
+                      setActiveWorkspace(workspace);
+                      setActiveView("Workspace");
+                    }}
+                  >
+                    <FontAwesomeIcon
+                      icon={faFolder}
+                      style={{ marginRight: "10px" }}
+                    />
+                    {workspace.name}
+                  </div>
+                )}
 
                 <div
                   className="workspace-actions"
@@ -103,6 +131,14 @@ const CreatedWorkSpace = ({
                       </button>
                       <button
                         onClick={() => {
+                          setWorkspaceOptionsVisible(null);
+                          setEditingWorkspaceId(workspace.id); // Enable rename mode
+                        }}
+                      >
+                        Rename
+                      </button>
+                      <button
+                        onClick={() => {
                           setDeleteWorkspaceId(workspace.id);
                           setWorkspaceOptionsVisible(null);
                         }}
@@ -119,7 +155,7 @@ const CreatedWorkSpace = ({
                     {workspace.folders.map((folder) => (
                       <li key={folder.id} className="folder-item">
                         <FontAwesomeIcon icon={faFolderPlus} style={{ marginRight: "8px" }} />
-                        {folder.name} {/* Fixed rendering */}
+                        {folder.name}
                       </li>
                     ))}
                   </ul>
