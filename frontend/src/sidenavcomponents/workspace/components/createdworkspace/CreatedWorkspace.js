@@ -19,6 +19,8 @@ const CreatedWorkSpace = ({
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] = useState(null);
+  const [editingWorkspaceId, setEditingWorkspaceId] = useState(null); // Tracks the workspace being renamed
+  const [newWorkspaceName, setNewWorkspaceName] = useState(""); // Temporary storage for renaming
 
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, folders: [] };
@@ -37,14 +39,12 @@ const CreatedWorkSpace = ({
     setActiveWorkspaceForFolder(null);
   };
 
-  const handleRenameWorkspace = (workspaceId) => {
-    const workspaceName = prompt("Enter new workspace name:");
-    if (workspaceName) {
-      const updatedWorkspaces = workspaces.map((workspace) =>
-        workspace.id === workspaceId ? { ...workspace, name: workspaceName } : workspace
-      );
-      setWorkspaces(updatedWorkspaces);
-    }
+  const handleRenameWorkspace = (workspaceId, newName) => {
+    const updatedWorkspaces = workspaces.map((workspace) =>
+      workspace.id === workspaceId ? { ...workspace, name: newName } : workspace
+    );
+    setWorkspaces(updatedWorkspaces);
+    setEditingWorkspaceId(null); // Exit rename mode
   };
 
   const handleDeleteWorkspace = () => {
@@ -70,7 +70,25 @@ const CreatedWorkSpace = ({
                   }}
                 >
                   <FontAwesomeIcon icon={faFolder} style={{ marginRight: "10px" }} />
-                  {workspace.name}
+                  
+                  {/* Inline Rename Logic */}
+                  {editingWorkspaceId === workspace.id ? (
+                    <input
+                      type="text"
+                      value={newWorkspaceName}
+                      onChange={(e) => setNewWorkspaceName(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          handleRenameWorkspace(workspace.id, newWorkspaceName);
+                        }
+                      }}
+                      onBlur={() => handleRenameWorkspace(workspace.id, newWorkspaceName)}
+                      autoFocus
+                      className="rename-input"
+                    />
+                  ) : (
+                    workspace.name
+                  )}
                 </div>
 
                 <DropDownWorkspace
@@ -81,14 +99,19 @@ const CreatedWorkSpace = ({
                     setActiveWorkspaceForFolder(id);
                     setIsFolderModalOpen(true);
                   }}
-                  onRename={handleRenameWorkspace}
+                  onRename={(id) => {
+                    setEditingWorkspaceId(id); // Enable rename mode
+                    setNewWorkspaceName(
+                      workspaces.find((workspace) => workspace.id === id)?.name || ""
+                    ); // Set initial name
+                  }}
                   onDelete={(id) => {
                     setDeleteWorkspaceId(id);
                     setWorkspaceOptionsVisible(null);
                   }}
                 />
 
-                
+                {/* Render folders */}
                 {workspace.folders && workspace.folders.length > 0 && (
                   <ul className="folder-list">
                     {workspace.folders.map((folder) => (
