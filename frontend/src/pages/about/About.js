@@ -10,7 +10,7 @@ const About = () => {
           <div className="about-text">
             <h1>About Us</h1>
             <p className="about-intro">
-              Welcome to Tassc! We are passionate about simplifying your task
+              Welcome to Daily To-Do! We are passionate about simplifying your task
               management and enhancing productivity. With a user-centric
               approach, we aim to deliver tools that help individuals and teams
               thrive.
@@ -18,7 +18,7 @@ const About = () => {
 
             <h2>Our Mission</h2>
             <p>
-              At Tassc, our mission is to empower people to organize their tasks
+              At Daily To-Do, our mission is to empower people to organize their tasks
               effectively and achieve their goals with ease. We believe in
               creating solutions that inspire and improve everyday workflows.
             </p>
