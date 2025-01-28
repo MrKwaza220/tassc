@@ -23,6 +23,8 @@
   text-align: center;
 }
 
+
+
 .modal-content h2 {
   margin: 0;
   font-size: 1.8rem;
@@ -30,11 +32,12 @@
   margin-bottom: 20px;
 }
 
-
 .form-group {
   margin-bottom: 20px;
   text-align: left;
 }
+
+
 
 .form-group label {
   display: block;
@@ -45,7 +48,7 @@
 
 .form-group input,
 .form-group textarea {
-  width: 100%;
+  width: 350px;
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
