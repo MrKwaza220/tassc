@@ -12,78 +12,116 @@
 }
 
 .modal-content {
-  position: relative; 
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  max-width: 400px;
-  width: 100%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background: #101010; 
+  padding: 20px 30px;
+  border-radius: 12px;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-align: center;
 }
 
 .modal-content h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  text-align: center;
+  margin: 0;
+  font-size: 1.8rem;
   color: #28a745;
+  margin-bottom: 20px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .form-group label {
   display: block;
   font-weight: bold;
-  text-align: start;
-  margin-bottom: 5px;
-  color: #28a745;
+  margin-bottom: 8px;
+  color: #28a745; 
 }
 
 .form-group input,
 .form-group textarea {
-  width: 300px;
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #202020; 
+  color: #fff; 
+  outline: none;
+  transition: border-color 0.3s;
 }
 
-.form-group textarea{
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #28a745;
+}
+
+.form-group textarea {
+  resize: none;
   height: 100px;
 }
 
 .form-actions {
+  margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .form-actions .btn-submit {
   background-color: #28a745;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 25px;
+  font-size: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: .5s;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.form-actions .btn-submit:hover{
-  background-color: #28a745;
+.form-actions .btn-submit:hover {
+  background-color: #218838;
   transform: scale(1.05);
 }
 
 .btn-cancel {
-  position: absolute; 
-  top: -10px; 
-  right: -5px; 
-  color: #28a745;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
   border: none;
-  font-size: 1.7rem; 
+  font-size: 1.5rem;
+  color: #28a745;
   cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-cancel:hover {
-  opacity: 0.9;
+  color: #218838;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 90%;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    font-size: 0.9rem;
+  }
+
+  .form-actions .btn-submit {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+
+  .btn-cancel {
+    font-size: 1.2rem;
+  }
 }
