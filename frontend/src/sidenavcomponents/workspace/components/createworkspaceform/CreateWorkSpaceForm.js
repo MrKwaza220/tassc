@@ -27,7 +27,7 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
         <div type="button" className="btn-cancel" onClick={onClose}>
           <FontAwesomeIcon icon={faCircleXmark} />
         </div>
-
+        <div className="modal-header">
         <h2>Create Workspace</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -39,14 +39,14 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
               placeholder="Enter workspace name"
               required
             />
-          </div>
-          <div className="form-group">
+
             <label>Description</label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter description"
             />
+          
           </div>
           <div className="form-actions">
             <button type="submit" className="btn-submit">
@@ -55,6 +55,7 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
             </button>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );
