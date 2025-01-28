@@ -10,35 +10,27 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (workspaceName) {
-      onSubmit({ name: workspaceName});
+      onSubmit({ name: workspaceName });
       setWorkspaceName("");
       setDescription("");
-      onClose(); 
+      onClose();
     } else {
       alert("Please fill in all fields.");
     }
   };
 
-  if (!isOpen) return null; 
+  if (!isOpen) return null;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div type="button" className="btn-cancel" onClick={onClose}>
+          <FontAwesomeIcon icon={faCircleXmark} />
+        </div>
 
-           
-      <div
-        className="modal-content"
-        onClick={(e) => e.stopPropagation()}
-      >   
-      <div type="button" className="btn-cancel" onClick={onClose}>
-      
-      <FontAwesomeIcon icon={faCircleXmark} />
-    </div>
-         
         <h2>Create Workspace</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            
-
             <label>Workspace Name</label>
             <input
               type="text"
@@ -61,7 +53,6 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
               Create
               <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
             </button>
-            
           </div>
         </form>
       </div>
