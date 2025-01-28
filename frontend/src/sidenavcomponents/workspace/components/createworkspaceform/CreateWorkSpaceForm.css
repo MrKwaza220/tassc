@@ -13,7 +13,7 @@
 
 .modal-content {
   position: relative;
-  background: #101010; 
+  background-color: #fff;
   padding: 20px 30px;
   border-radius: 12px;
   max-width: 450px;
@@ -29,6 +29,7 @@
   color: #28a745;
   margin-bottom: 20px;
 }
+
 
 .form-group {
   margin-bottom: 20px;
@@ -49,7 +50,7 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
-  background: #202020; 
+  /* background: #202020;  */
   color: #fff; 
   outline: none;
   transition: border-color 0.3s;
