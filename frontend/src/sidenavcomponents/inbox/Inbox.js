@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import DirectMessage from "./directmessage/DirectMessage";
-import GroupChat from "./groupchat/GroupChat";
-import Notification from "./notifications/Notifications";
-import axios from "axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMessage, faComments, faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
 import "./Inbox.css";
 
 const Inbox = () => {
