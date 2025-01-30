@@ -21,57 +21,10 @@ const Inbox = () => {
             <p>Welcome to your Inbox!</p>
         </div>
 
-    <div className="inbox-container">
+    
       
-      <div className="chat-section">
-        <div className="chat-header">
-          <ul className="chat-list">
-            <li
-              className={`chat-items ${
-                activeView === "DirectMessage" ? "active" : ""
-              }`}
-              onClick={() => setActiveView("DirectMessage")}
-            >
-              <FontAwesomeIcon icon={faMessage} style={{marginRight: "8", fontSize: "18px"}} />
-              Direct Message
-            </li>
-            <li
-              className={`chat-items ${
-                activeView === "GroupChat" ? "active" : ""
-              }`}
-              onClick={() => setActiveView("GroupChat")}
-
-            >
-              <FontAwesomeIcon icon={faComments} style={{marginRight: "8", fontSize: "18px"}} />
-              Group Chat
-            </li>
-            <li
-              className={`chat-items ${
-                activeView === "Notification" ? "active" : ""
-              }`}
-              onClick={() => setActiveView("Notification")}
-            >
-              <FontAwesomeIcon icon={faBell} style={{marginRight: "8", fontSize: "18px"}} />
-              Notifications
-            </li>
-          </ul>
-          <div className="search-section">
-            <input
-              type="text"
-              value={searchQuery}
-              placeholder="Search by Email"
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button onClick={handleSearch}>
-            <FontAwesomeIcon icon={faMagnifyingGlass} style={{marginRight: "8", fontSize: "18px"}} />
-              Search
-              </button>
-          </div>
-        </div>
-        <div className="chat-content">{renderContent()}</div>
-      </div>
     </div>
-    </div>
+    
   );
 };
 
