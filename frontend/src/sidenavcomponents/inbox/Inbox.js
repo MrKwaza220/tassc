@@ -8,11 +8,6 @@ import { faMessage, faComments, faBell, faMagnifyingGlass } from '@fortawesome/f
 import "./Inbox.css";
 
 const Inbox = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [activeView, setActiveView] = useState("DirectMessage");
-  const [selectedUser, setSelectedUser] = useState(null);
-
   
 
 
