@@ -27,25 +27,7 @@ const Inbox = () => {
     setActiveView("DirectMessage");
   };
 
-  const renderContent = () => {
-    switch (activeView) {
-      case "DirectMessage":
-        return selectedUser ? (
-          <DirectMessage
-            currentUser={{ _id: "currentUserId" }}
-            recipientId={selectedUser._id}
-          />
-        ) : (
-          <p>Please select a user to start a conversation.</p>
-        );
-      case "GroupChat":
-        return <GroupChat />;
-      case "Notification":
-        return <Notification />;
-      default:
-        return <DirectMessage />;
-    }
-  };
+
 
   return (
 
