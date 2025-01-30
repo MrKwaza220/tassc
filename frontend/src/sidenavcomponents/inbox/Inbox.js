@@ -13,19 +13,7 @@ const Inbox = () => {
   const [activeView, setActiveView] = useState("DirectMessage");
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`/api/users/search?query=${searchQuery}`);
-      setSearchResults(response.data);
-    } catch (error) {
-      console.error("Error searching users", error);
-    }
-  };
-
-  const handleUserClick = (user) => {
-    setSelectedUser(user);
-    setActiveView("DirectMessage");
-  };
+  
 
 
 
