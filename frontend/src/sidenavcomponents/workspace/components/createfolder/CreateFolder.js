@@ -9,7 +9,7 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (folderName.trim()) {
-      onSubmit({ name: folderName.trim() });
+      onSubmit(folderName.trim()); // Pass only the string
       setFolderName("");
       setErrorMessage("");
       onClose();
@@ -17,6 +17,7 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
       setErrorMessage("Folder name is required.");
     }
   };
+  
 
   if (!isOpen) return null;
 
