@@ -19,8 +19,8 @@ const CreatedWorkSpace = ({
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] = useState(null);
-  const [editingWorkspaceId, setEditingWorkspaceId] = useState(null); // Tracks the workspace being renamed
-  const [newWorkspaceName, setNewWorkspaceName] = useState(""); // Temporary storage for renaming
+  const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
+  const [newWorkspaceName, setNewWorkspaceName] = useState("");
 
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, folders: [] };
@@ -28,23 +28,17 @@ const CreatedWorkSpace = ({
     setIsModalOpen(false);
   };
 
-  const handleCreateFolder = (folderName) => {
-    const updatedWorkspaces = workspaces.map((workspace) =>
-      workspace.id === activeWorkspaceForFolder
-        ? { ...workspace, folders: [...workspace.folders, { id: Date.now(), name: folderName }] }
-        : workspace
-    );
-    setWorkspaces(updatedWorkspaces);
-    setIsFolderModalOpen(false);
-    setActiveWorkspaceForFolder(null);
-  };
+ 
 
   const handleRenameWorkspace = (workspaceId, newName) => {
+    if (!newName.trim()) return;
+
     const updatedWorkspaces = workspaces.map((workspace) =>
-      workspace.id === workspaceId ? { ...workspace, name: newName } : workspace
+      workspace.id === workspaceId ? { ...workspace, name: newName.trim() } : workspace
     );
+
     setWorkspaces(updatedWorkspaces);
-    setEditingWorkspaceId(null); // Exit rename mode
+    setEditingWorkspaceId(null);
   };
 
   const handleDeleteWorkspace = () => {
@@ -70,8 +64,7 @@ const CreatedWorkSpace = ({
                   }}
                 >
                   <FontAwesomeIcon icon={faFolder} style={{ marginRight: "10px" }} />
-                  
-                  {/* Inline Rename Logic */}
+
                   {editingWorkspaceId === workspace.id ? (
                     <input
                       type="text"
@@ -87,7 +80,7 @@ const CreatedWorkSpace = ({
                       className="rename-input"
                     />
                   ) : (
-                    workspace.name
+                    <span>{workspace.name}</span>
                   )}
                 </div>
 
@@ -100,10 +93,10 @@ const CreatedWorkSpace = ({
                     setIsFolderModalOpen(true);
                   }}
                   onRename={(id) => {
-                    setEditingWorkspaceId(id); // Enable rename mode
+                    setEditingWorkspaceId(id);
                     setNewWorkspaceName(
                       workspaces.find((workspace) => workspace.id === id)?.name || ""
-                    ); // Set initial name
+                    );
                   }}
                   onDelete={(id) => {
                     setDeleteWorkspaceId(id);
@@ -111,17 +104,7 @@ const CreatedWorkSpace = ({
                   }}
                 />
 
-                {/* Render folders */}
-                {workspace.folders && workspace.folders.length > 0 && (
-                  <ul className="folder-list">
-                    {workspace.folders.map((folder) => (
-                      <li key={folder.id} className="folder-item">
-                        <FontAwesomeIcon icon={faFolder} style={{ marginRight: "8px" }} />
-                        {folder.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                
               </li>
             ))}
           </ul>
@@ -137,11 +120,7 @@ const CreatedWorkSpace = ({
             onSubmit={handleCreateWorkspace}
           />
 
-          <CreateFolder
-            isOpen={isFolderModalOpen}
-            onClose={() => setIsFolderModalOpen(false)}
-            onSubmit={handleCreateFolder}
-          />
+         
 
           <ConfirmDelete
             isOpen={!!deleteWorkspaceId}

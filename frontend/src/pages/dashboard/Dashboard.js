@@ -31,7 +31,7 @@ const Dashboard = () => {
       case "DailyTask":
         return <DailyTask />;
       case "Workspace":
-        return <Workspace />
+        return <Workspace />;
       default:
         return <Inbox />;
     }
@@ -47,17 +47,11 @@ const Dashboard = () => {
             Inbox
           </li>
           <li className="nav-item" onClick={() => setActiveView("DailyTask")}>
-            <FontAwesomeIcon
-              icon={faListCheck}
-              style={{ marginRight: "10px" }}
-            />
+            <FontAwesomeIcon icon={faListCheck} style={{ marginRight: "10px" }} />
             Daily Tasks
           </li>
           <li className="nav-item" onClick={handleWorkspaceToggle}>
-            <FontAwesomeIcon
-              icon={faBriefcase}
-              style={{ marginRight: "10px" }}
-            />
+            <FontAwesomeIcon icon={faBriefcase} style={{ marginRight: "10px" }} />
             Workspace
             <FontAwesomeIcon
               icon={isWorkspaceOpen ? faChevronDown : faChevronRight}
@@ -66,6 +60,7 @@ const Dashboard = () => {
           </li>
         </ul>
 
+        {/* CreatedWorkSpace handles workspaces and folders */}
         <CreatedWorkSpace
           isWorkspaceOpen={isWorkspaceOpen}
           workspaces={workspaces}
@@ -74,6 +69,7 @@ const Dashboard = () => {
           setActiveView={setActiveView}
         />
       </aside>
+
       <main className="content">{renderContent()}</main>
     </div>
   );
