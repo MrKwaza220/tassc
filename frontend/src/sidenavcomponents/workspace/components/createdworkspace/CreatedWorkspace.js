@@ -4,7 +4,6 @@ import { faPlus, faFolder } from "@fortawesome/free-solid-svg-icons";
 import DropDownWorkspace from "../dropdownworkspace/DropDownWorkspace";
 import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
 import ConfirmDelete from "../confirmdelete/ConfirmDelete";
-import CreateFolder from "../createfolder/CreateFolder";
 import "./CreatedWorkspace.css";
 
 const CreatedWorkSpace = ({
