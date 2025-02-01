@@ -60,7 +60,7 @@ const Dashboard = () => {
           </li>
         </ul>
 
-        {/* CreatedWorkSpace handles workspaces and folders */}
+        
         <CreatedWorkSpace
           isWorkspaceOpen={isWorkspaceOpen}
           workspaces={workspaces}
