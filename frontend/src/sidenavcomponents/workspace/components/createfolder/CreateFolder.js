@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./CreateFolder.css";
 
@@ -17,7 +16,6 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
       setErrorMessage("Folder name is required.");
     }
   };
-  
 
   if (!isOpen) return null;
 
