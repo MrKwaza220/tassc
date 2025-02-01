@@ -18,7 +18,8 @@ const CreatedWorkSpace = ({
   const [isFolderModalOpen, setIsFolderModalOpen] = useState(false);
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
-  const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] = useState(null);
+  const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] =
+    useState(null);
   const [editingWorkspaceId, setEditingWorkspaceId] = useState(null);
   const [newWorkspaceName, setNewWorkspaceName] = useState("");
 
@@ -28,13 +29,13 @@ const CreatedWorkSpace = ({
     setIsModalOpen(false);
   };
 
- 
-
   const handleRenameWorkspace = (workspaceId, newName) => {
     if (!newName.trim()) return;
 
     const updatedWorkspaces = workspaces.map((workspace) =>
-      workspace.id === workspaceId ? { ...workspace, name: newName.trim() } : workspace
+      workspace.id === workspaceId
+        ? { ...workspace, name: newName.trim() }
+        : workspace
     );
 
     setWorkspaces(updatedWorkspaces);
@@ -63,7 +64,10 @@ const CreatedWorkSpace = ({
                     setActiveView("Workspace");
                   }}
                 >
-                  <FontAwesomeIcon icon={faFolder} style={{ marginRight: "10px" }} />
+                  <FontAwesomeIcon
+                    icon={faFolder}
+                    style={{ marginRight: "10px" }}
+                  />
 
                   {editingWorkspaceId === workspace.id ? (
                     <input
@@ -75,7 +79,9 @@ const CreatedWorkSpace = ({
                           handleRenameWorkspace(workspace.id, newWorkspaceName);
                         }
                       }}
-                      onBlur={() => handleRenameWorkspace(workspace.id, newWorkspaceName)}
+                      onBlur={() =>
+                        handleRenameWorkspace(workspace.id, newWorkspaceName)
+                      }
                       autoFocus
                       className="rename-input"
                     />
@@ -95,7 +101,8 @@ const CreatedWorkSpace = ({
                   onRename={(id) => {
                     setEditingWorkspaceId(id);
                     setNewWorkspaceName(
-                      workspaces.find((workspace) => workspace.id === id)?.name || ""
+                      workspaces.find((workspace) => workspace.id === id)
+                        ?.name || ""
                     );
                   }}
                   onDelete={(id) => {
@@ -103,13 +110,14 @@ const CreatedWorkSpace = ({
                     setWorkspaceOptionsVisible(null);
                   }}
                 />
-
-                
               </li>
             ))}
           </ul>
 
-          <button className="create-space-btn" onClick={() => setIsModalOpen(true)}>
+          <button
+            className="create-space-btn"
+            onClick={() => setIsModalOpen(true)}
+          >
             Create Space
             <FontAwesomeIcon icon={faPlus} style={{ marginLeft: "8px" }} />
           </button>
@@ -119,8 +127,6 @@ const CreatedWorkSpace = ({
             onClose={() => setIsModalOpen(false)}
             onSubmit={handleCreateWorkspace}
           />
-
-         
 
           <ConfirmDelete
             isOpen={!!deleteWorkspaceId}
