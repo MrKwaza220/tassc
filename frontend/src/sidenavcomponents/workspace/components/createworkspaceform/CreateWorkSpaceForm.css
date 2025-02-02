@@ -23,8 +23,6 @@
   text-align: center;
 }
 
-
-
 .modal-content h2 {
   margin: 0;
   font-size: 1.8rem;
@@ -37,13 +35,11 @@
   text-align: left;
 }
 
-
-
 .form-group label {
   display: block;
   font-weight: bold;
-  margin-bottom: 8px;
-  color: #28a745; 
+  margin-bottom: 10px;
+  color: #28a745;
 }
 
 .form-group input,
@@ -53,7 +49,7 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
-  color: #333; 
+  color: #333;
   outline: none;
   transition: border-color 0.3s;
 }
@@ -65,11 +61,12 @@
 
 .form-group textarea {
   resize: none;
-  height: 100px;
+  height: 150px;
+  margin-top: 10px;
 }
 
 .form-actions {
-  margin-top: 20px;
+  margin-top: 0px;
   display: flex;
   justify-content: flex-end;
 }
