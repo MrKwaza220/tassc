@@ -29,7 +29,6 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
         </div>
 
         <h1>
-          {/* <FontAwesomeIcon icon={faFolderPlus} style={{ marginRight: "10px" }} /> */}
           Create Folder
         </h1>
 
@@ -49,7 +48,7 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
           <div className="form-buttons">
-            <div type="submit" className="submit-button">
+            <div type="submit" className="submit-button" onClick={handleSubmit}>
               Create
             </div>
           </div>
