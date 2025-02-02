@@ -1,91 +1,125 @@
-/* CreateFolder.css */
-
+/* Overlay (background blur) */
 .create-folder-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .create-folder-modal {
-    background: #ffffff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 400px;
-    text-align: center;
-  }
-  
-  .create-folder-modal h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333333;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-    text-align: left;
-  }
-  
-  .form-group label {
-    font-size: 16px;
-    color: #555555;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: left;
-  }
-  
-  .form-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .cancel-button,
-  .submit-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .cancel-button {
-    background-color: #f5f5f5;
-    color: #555555;
-  }
-  
-  .cancel-button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .submit-button {
-    background-color: #007bff;
-    color: #ffffff;
-  }
-  
-  .submit-button:hover {
-    background-color: #0056b3;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.create-folder-modal {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+
+.create-folder-modal h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+ 
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #28a745;
+  transition: color 0.3s ease;
+}
+
+.create-folder-modal h1{
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #28a745;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 16px;
+  color: #28a745;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: left;
+}
+
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.cancel-button,
+.submit-button {
+  padding: 10px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+ .cancel-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #b3b3b3;
+}
+
+.submit-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #28a745;
+}
