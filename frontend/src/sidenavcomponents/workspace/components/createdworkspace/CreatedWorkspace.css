@@ -93,6 +93,9 @@
 
 .folder-item {
   margin: 5px 0;
+  background-color: #1d1d1d;
+  padding: 10px 15px;
+  border-radius: 5px;
   font-size: 14px;
   color: #ccc;
   cursor: pointer;
