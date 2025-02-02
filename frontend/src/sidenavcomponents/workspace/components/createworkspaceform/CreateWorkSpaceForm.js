@@ -31,7 +31,7 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
         <h2>Create Workspace</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Workspace Name</label>
+            {/* <label>Workspace Name</label> */}
             <input
               type="text"
               value={workspaceName}
@@ -40,7 +40,7 @@ const CreateWorkSpaceForm = ({ isOpen, onClose, onSubmit }) => {
               required
             />
 
-            <label>Description</label>
+            {/* <label>Description</label> */}
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
