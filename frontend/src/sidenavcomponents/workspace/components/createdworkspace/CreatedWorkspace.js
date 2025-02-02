@@ -21,16 +21,14 @@ const CreatedWorkSpace = ({
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] =
     useState(null);
 
- 
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, folders: [] };
     setWorkspaces([...workspaces, newWorkspace]);
     setIsModalOpen(false);
   };
 
-  
   const handleCreateFolder = (folderName) => {
-    if (!activeWorkspaceForFolder) return; 
+    if (!activeWorkspaceForFolder) return;
 
     const updatedWorkspaces = workspaces.map((workspace) =>
       workspace.id === activeWorkspaceForFolder
@@ -45,10 +43,9 @@ const CreatedWorkSpace = ({
     );
     setWorkspaces(updatedWorkspaces);
     setIsFolderModalOpen(false);
-    setActiveWorkspaceForFolder(null); 
+    setActiveWorkspaceForFolder(null);
   };
 
- 
   const handleRenameWorkspace = (workspaceId, newName) => {
     const updatedWorkspaces = workspaces.map((workspace) =>
       workspace.id === workspaceId ? { ...workspace, name: newName } : workspace
@@ -56,7 +53,6 @@ const CreatedWorkSpace = ({
     setWorkspaces(updatedWorkspaces);
   };
 
-  
   const handleDeleteWorkspace = () => {
     const updatedWorkspaces = workspaces.filter(
       (workspace) => workspace.id !== deleteWorkspaceId
@@ -103,21 +99,28 @@ const CreatedWorkSpace = ({
                   }}
                 />
 
-                {workspace.folders && workspace.folders.length > 0 && (
-                  <ul className="folder-list">
-                    {workspace.folders.map((folder) => (
-                      <li key={folder.id} className="folder-item">
-                        <FontAwesomeIcon
-                          icon={faFolder}
-                          style={{ marginRight: "8px" }}
-                        />
-                        {folder.name}
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </li>
             ))}
+
+            <li className="created-folder">
+              {workspaces.map(
+                (workspace) =>
+                  workspace.folders &&
+                  workspace.folders.length > 0 && (
+                    <ul key={workspace.id} className="folder-list">
+                      {workspace.folders.map((folder) => (
+                        <li key={folder.id} className="folder-item">
+                          <FontAwesomeIcon
+                            icon={faFolder}
+                            style={{ marginRight: "8px" }}
+                          />
+                          {folder.name}
+                        </li>
+                      ))}
+                    </ul>
+                  )
+              )}
+            </li>
           </ul>
 
           <button
