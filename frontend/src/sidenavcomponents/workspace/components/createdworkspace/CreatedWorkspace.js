@@ -4,7 +4,7 @@ import { faPlus, faFolder } from "@fortawesome/free-solid-svg-icons";
 import DropDownWorkspace from "../dropdownworkspace/DropDownWorkspace";
 import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
 import ConfirmDelete from "../confirmdelete/ConfirmDelete";
-import CreateFolder from "../createfolder/CreateFolder"; // ✅ Import the CreateFolder component
+import CreateFolder from "../createfolder/CreateFolder";
 import "./CreatedWorkspace.css";
 
 const CreatedWorkSpace = ({
@@ -21,16 +21,16 @@ const CreatedWorkSpace = ({
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] =
     useState(null);
 
-  // Create a new workspace
+ 
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, folders: [] };
     setWorkspaces([...workspaces, newWorkspace]);
     setIsModalOpen(false);
   };
 
-  // Create a folder inside a specific workspace
+  
   const handleCreateFolder = (folderName) => {
-    if (!activeWorkspaceForFolder) return; // Ensure a workspace is selected
+    if (!activeWorkspaceForFolder) return; 
 
     const updatedWorkspaces = workspaces.map((workspace) =>
       workspace.id === activeWorkspaceForFolder
@@ -45,10 +45,10 @@ const CreatedWorkSpace = ({
     );
     setWorkspaces(updatedWorkspaces);
     setIsFolderModalOpen(false);
-    setActiveWorkspaceForFolder(null); // Reset workspace selection
+    setActiveWorkspaceForFolder(null); 
   };
 
-  // Rename a workspace
+ 
   const handleRenameWorkspace = (workspaceId, newName) => {
     const updatedWorkspaces = workspaces.map((workspace) =>
       workspace.id === workspaceId ? { ...workspace, name: newName } : workspace
@@ -56,7 +56,7 @@ const CreatedWorkSpace = ({
     setWorkspaces(updatedWorkspaces);
   };
 
-  // Delete a workspace
+  
   const handleDeleteWorkspace = () => {
     const updatedWorkspaces = workspaces.filter(
       (workspace) => workspace.id !== deleteWorkspaceId
