@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import "./CreateFolder.css";
 
 const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
@@ -8,7 +10,7 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (folderName.trim()) {
-      onSubmit(folderName.trim()); // Pass only the string
+      onSubmit(folderName.trim());
       setFolderName("");
       setErrorMessage("");
       onClose();
@@ -22,7 +24,14 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
   return (
     <div className="create-folder-overlay">
       <div className="create-folder-modal">
-        <h1>Create Folder</h1>
+        <div type="button" className="close-button" onClick={onClose}>
+        <FontAwesomeIcon icon={faCircleXmark} />
+        </div>
+
+        <h1>
+          {/* <FontAwesomeIcon icon={faFolderPlus} style={{ marginRight: "10px" }} /> */}
+          Create Folder
+        </h1>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -31,6 +40,7 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
               type="text"
               id="folder-name"
               name="folder-name"
+              placeholder="Enter folder name"
               value={folderName}
               onChange={(e) => setFolderName(e.target.value)}
             />
@@ -39,12 +49,9 @@ const CreateFolder = ({ onClose, onSubmit, isOpen }) => {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
 
           <div className="form-buttons">
-            <button type="button" className="cancel-button" onClick={onClose}>
-              Cancel
-            </button>
-            <button type="submit" className="submit-button">
-              Create Folder
-            </button>
+            <div type="submit" className="submit-button">
+              Create
+            </div>
           </div>
         </form>
       </div>
