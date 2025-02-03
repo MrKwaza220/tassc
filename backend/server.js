@@ -32,7 +32,7 @@ app.use(cors());
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/tasks', require('./routes/taskRoutes'));
-app.use('/api/chat',  require('./routes/ChatRoutes'));
+
 
 // Simple route to send a message to the browser
 app.get('/', (req, res) => {
