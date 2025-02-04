@@ -19,7 +19,7 @@ const connectDB = async () => {
     console.log('MongoDB connected....');
   } catch (err) {
     console.error('MongoDB connection error:', err.message);
-    process.exit(1); // Exit process with failure
+    process.exit(1);
   }
 };
 
@@ -32,6 +32,10 @@ app.use(cors());
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/tasks', require('./routes/taskRoutes'));
+app.use('/api/workspaces', require('./routes/WorkspaceRoutes'));
+app.use('/api/folders', require('./routes/folderRoutes'));
+
+
 
 
 // Simple route to send a message to the browser
