@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 
-
 // Load environment variables
 dotenv.config();
 
@@ -25,20 +24,14 @@ const connectDB = async () => {
 
 connectDB();
 
-// Middleware
 app.use(express.json());
 app.use(cors());
 
-// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/tasks', require('./routes/taskRoutes'));
 app.use('/api/workspaces', require('./routes/WorkspaceRoutes'));
-app.use('/api/folders', require('./routes/folderRoutes'));
+app.use("/api/folders", require("./routes/folderRoutes"));
 
-
-
-
-// Simple route to send a message to the browser
 app.get('/', (req, res) => {
   res.send('Server is running!');
 });
