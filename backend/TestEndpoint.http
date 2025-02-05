@@ -1,15 +1,4 @@
 GET http://localhost:5000/api/workspaces
 
 ###
-POST http://localhost:5000/api/workspaces
-
-{
-  "name": "Test Workspace",
-}
-
-###
-DELETE http://localhost:5000/api/workspaces
-
-
-###
-PUT http://localhost:5000/api/workspaces
+GET http://localhost:5000/api/folders/67a3d5cb4e71c82a56afc536
