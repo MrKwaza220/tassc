@@ -115,6 +115,23 @@ const CreatedWorkSpace = ({
                             style={{ marginRight: "8px" }}
                           />
                           {folder.name}
+
+                          <DropDownWorkspace
+                          workspaceId={workspace.id}
+                          isVisible={workspaceOptionsVisible}
+                          onToggleVisibility={setWorkspaceOptionsVisible}
+                          onCreateFolder={() => {
+                            setActiveWorkspaceForFolder(workspace.id);
+                            setIsFolderModalOpen(true);
+                          }}
+                          onRename={(id) => {
+                            handleRenameWorkspace(id, workspace.name);
+                          }}
+                          onDelete={(id) => {
+                            setDeleteWorkspaceId(id);
+                            setWorkspaceOptionsVisible(null);
+                          }}
+                        />
                         </li>
                       ))}
                     </ul>
