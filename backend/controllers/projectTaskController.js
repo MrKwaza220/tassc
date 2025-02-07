@@ -1,18 +1,15 @@
 const ProjectTask = require("../models/ProjectTask");
 const Folder = require("../models/Folder");
 
-// 📌 Create a new task under a folder
 exports.createTask = async (req, res) => {
   try {
     const { folderId, name, description, status } = req.body;
 
-    // Check if folder exists
     const folder = await Folder.findById(folderId);
     if (!folder) {
       return res.status(404).json({ error: "Folder not found" });
     }
 
-    // Create a new task
     const newTask = new ProjectTask({
       name,
       description,
@@ -20,7 +17,6 @@ exports.createTask = async (req, res) => {
       folder: folderId,
     });
 
-    // Save task to database
     await newTask.save();
 
     res.status(201).json(newTask);
@@ -30,12 +26,10 @@ exports.createTask = async (req, res) => {
   }
 };
 
-// 📌 Get all tasks under a specific folder
 exports.getTasksByFolder = async (req, res) => {
   try {
     const { folderId } = req.params;
 
-    // Fetch tasks for the folder
     const tasks = await ProjectTask.find({ folder: folderId });
 
     res.status(200).json(tasks);
@@ -45,17 +39,15 @@ exports.getTasksByFolder = async (req, res) => {
   }
 };
 
-// 📌 Update a task (name, description, status)
 exports.updateTask = async (req, res) => {
   try {
     const { taskId } = req.params;
     const updates = req.body;
 
-    // Find and update task
     const updatedTask = await ProjectTask.findByIdAndUpdate(
       taskId,
       updates,
-      { new: true } // Return updated task
+      { new: true } 
     );
 
     if (!updatedTask) {
@@ -69,12 +61,10 @@ exports.updateTask = async (req, res) => {
   }
 };
 
-// 📌 Delete a task
 exports.deleteTask = async (req, res) => {
   try {
     const { taskId } = req.params;
 
-    // Find and delete task
     const deletedTask = await ProjectTask.findByIdAndDelete(taskId);
     if (!deletedTask) {
       return res.status(404).json({ error: "Task not found" });
