@@ -6,6 +6,7 @@ import CreateWorkSpaceForm from "../createworkspaceform/CreateWorkSpaceForm";
 import ConfirmDelete from "../confirmdelete/ConfirmDelete";
 import CreateFolder from "../createfolder/CreateFolder";
 import "./CreatedWorkspace.css";
+import DropDownFolder from "../dropdownfolder/DropDownFolder";
 
 const CreatedWorkSpace = ({
   isWorkspaceOpen,
@@ -18,9 +19,12 @@ const CreatedWorkSpace = ({
   const [isFolderModalOpen, setIsFolderModalOpen] = useState(false);
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
+  const [visibleFolderMenu, setVisibleFolderMenu] = useState(null);
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] =
     useState(null);
 
+
+  //Workspace
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, folders: [] };
     setWorkspaces([...workspaces, newWorkspace]);
@@ -60,6 +64,20 @@ const CreatedWorkSpace = ({
     setWorkspaces(updatedWorkspaces);
     setDeleteWorkspaceId(null);
   };
+
+  //Folder
+  const handleCreateTask = (folderId) => {
+    console.log("Create Task", folderId);
+  };
+
+  const handleRenameFolder = (folderId) => {
+    console.log("Rename Folder", folderId);
+  };
+
+  const handleDeleteFolder = (folderId) => {
+    console.log("Delete Folder", folderId);
+  };
+
 
   return (
     <div className="created-workspaces">
@@ -116,22 +134,14 @@ const CreatedWorkSpace = ({
                           />
                           {folder.name}
 
-                          <DropDownWorkspace
-                          workspaceId={workspace.id}
-                          isVisible={workspaceOptionsVisible}
-                          onToggleVisibility={setWorkspaceOptionsVisible}
-                          onCreateFolder={() => {
-                            setActiveWorkspaceForFolder(workspace.id);
-                            setIsFolderModalOpen(true);
-                          }}
-                          onRename={(id) => {
-                            handleRenameWorkspace(id, workspace.name);
-                          }}
-                          onDelete={(id) => {
-                            setDeleteWorkspaceId(id);
-                            setWorkspaceOptionsVisible(null);
-                          }}
-                        />
+                          <DropDownFolder 
+                            folderId={folder.id}
+                            isVisible={visibleFolderMenu}
+                            onToggleVisibility={setVisibleFolderMenu}
+                            onCreateTask={handleCreateTask}
+                            onRename={handleRenameFolder}
+                            onDelete={handleDeleteFolder}
+                          />
                         </li>
                       ))}
                     </ul>
