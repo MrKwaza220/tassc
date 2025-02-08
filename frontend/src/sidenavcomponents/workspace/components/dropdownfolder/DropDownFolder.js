@@ -16,7 +16,9 @@ const DropDownFolder = ({
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        onToggleVisibility(null); 
+       if(typeof onToggleVisibility === "function") {
+          onToggleVisibility(null);
+        }
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -27,7 +29,7 @@ const DropDownFolder = ({
   }, [onToggleVisibility]);
 
   return (
-    <div className="workspace-actions">
+    <div className="folder-actions">
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -37,7 +39,7 @@ const DropDownFolder = ({
         <FontAwesomeIcon icon={faEllipsis} />
       </div>
       {isVisible === folderId && (
-        <div ref={menuRef} className="workspace-menu">
+        <div ref={menuRef} className="folder-menu">
           <button
             onClick={() => {
               onCreateTask(folderId);
