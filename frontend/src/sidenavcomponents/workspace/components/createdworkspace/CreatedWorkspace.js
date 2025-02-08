@@ -20,6 +20,7 @@ const CreatedWorkSpace = ({
   const [workspaceOptionsVisible, setWorkspaceOptionsVisible] = useState(null);
   const [deleteWorkspaceId, setDeleteWorkspaceId] = useState(null);
   const [visibleFolderMenu, setVisibleFolderMenu] = useState(null);
+  const [deleteFolderId, setDeleteFolderId] = useState(null);
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] =
     useState(null);
 
@@ -75,7 +76,13 @@ const CreatedWorkSpace = ({
   };
 
   const handleDeleteFolder = (folderId) => {
-    console.log("Delete Folder", folderId);
+    const updatedWorkspaces = workspaces.map((workspace) => ({
+      ...workspace,
+      folders: workspace.folders.filter((folder) => folder.id !== folderId),
+    }));
+
+    setWorkspaces(updatedWorkspaces);
+    setDeleteFolderId(null);
   };
 
 
@@ -175,6 +182,12 @@ const CreatedWorkSpace = ({
             onClose={() => setDeleteWorkspaceId(null)}
             onConfirm={handleDeleteWorkspace}
             message="Are you sure you want to delete this workspace?"
+          />
+          <ConfirmDelete 
+            isOpen={!!deleteFolderId}
+            onClose={() => setDeleteFolderId(null)}
+            onConfirm={handleDeleteFolder}
+            message="Are you sure you want to delete this folder?"
           />
         </>
       )}
