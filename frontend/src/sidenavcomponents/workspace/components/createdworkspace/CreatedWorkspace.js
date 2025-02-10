@@ -24,7 +24,6 @@ const CreatedWorkSpace = ({
   const [activeWorkspaceForFolder, setActiveWorkspaceForFolder] =
     useState(null);
 
-
   //Workspace
   const handleCreateWorkspace = (workspace) => {
     const newWorkspace = { id: Date.now(), ...workspace, folders: [] };
@@ -85,7 +84,6 @@ const CreatedWorkSpace = ({
     setDeleteFolderId(null);
   };
 
-
   return (
     <div className="created-workspaces">
       {isWorkspaceOpen && (
@@ -123,7 +121,6 @@ const CreatedWorkSpace = ({
                     setWorkspaceOptionsVisible(null);
                   }}
                 />
-
               </li>
             ))}
 
@@ -141,7 +138,7 @@ const CreatedWorkSpace = ({
                           />
                           {folder.name}
 
-                          <DropDownFolder 
+                          <DropDownFolder
                             folderId={folder.id}
                             isVisible={visibleFolderMenu}
                             onToggleVisibility={setVisibleFolderMenu}
@@ -183,7 +180,7 @@ const CreatedWorkSpace = ({
             onConfirm={handleDeleteWorkspace}
             message="Are you sure you want to delete this workspace?"
           />
-          <ConfirmDelete 
+          <ConfirmDelete
             isOpen={!!deleteFolderId}
             onClose={() => setDeleteFolderId(null)}
             onConfirm={handleDeleteFolder}
