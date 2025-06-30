@@ -11,16 +11,14 @@ const Login = ({ onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear any previous error
+    setError(""); 
     try {
       const response = await axios.post(
        "http://localhost:5000/api/auth/login",
         { email, password }
       );
-      if (response.data.token) {
-        // Save the token in local storage
+      if (response.data.token) {  
         localStorage.setItem("token", response.data.token);
-        // Redirect to the tasks page
         navigate("/dashboard");
       } else {
         setError("Login failed");
