@@ -29,7 +29,7 @@ app.use(cors());
 
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/tasks', require('./routes/taskRoutes'));
-app.use('/api/workspaces', require('./routes/WorkspaceRoutes'));
+// app.use('/api/workspaces', require('./routes/WorkspaceRoutes'));
 app.use("/api/folders", require("./routes/folderRoutes"));
 app.use("/api/projectTasks", require("./routes/projectTaskRoutes"));
 
